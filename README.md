@@ -26,3 +26,13 @@ El sistema cuenta con los siguientes requisitos
 **-6** Una funcionalidad de autorización de exámenes desde la cual accediendo por paciente. Se pueda evaluar si se autorizo o no los exámenes que tenga pendiente. El resultado de este proceso debe ser la actualización del flag de estado de cada órden según la decisión tomada. 
 
 #### NOTA: Tener en cuenta que solo se puede autorizar un examen a la vez, el acceso a las órdenes registradas debe realizarse usando un esquema LIFE
+
+## Requisitos del producto
+
+**1** El sistema debe incluir un módulo de gestión de usuarios y permite la autenticación mediante la contraseña designada. Cada acción debe permitir la trazabilidad asociada al usuario de manera que se pueda garantizar el no repudio de sus acciones
+
+**2** La aplicación debe funcionar para el sistema operativo Ubuntu 23.04 LTS o Debian 12 o superior
+
+**3** Las vistas del sistema deben tener una distribución suficiente 23.04 LTS o Debian 12 o superior
+
+**4** La base de datos debe ser centralizada, se recomienda utilizar archivos de texto, XML o JSON o en lo posible un gestor de base de datos
