@@ -44,7 +44,7 @@ El desarrollo debe respetar un patrón de diseño modelo vista controlador o MVC
 
 Todo el proceso de diseño e implementación de diferentes vistas de la aplicación debe contar con la opinión del cliente y este será quien autorice su puesta en marcha
 
--Las únicas estructuras de datos autorizadas y la implementación de los algoritmos deberán ser de autoría de los miembros del equipo
+Las únicas estructuras de datos autorizadas y la implementación de los algoritmos deberán ser de autoría de los miembros del equipo
 
 El proyecto consta de los siguientes entregables: Especificación de requerimientos, diseño, código fuente, validación del software y evidencia de la puesta tendrán máximo 3 estudiantes
 
