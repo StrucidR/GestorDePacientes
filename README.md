@@ -10,9 +10,9 @@ El sistema cuenta con los siguientes requisitos
 
 **-2** El sistema de gestión de citas, el cual recibirá como insumo la siguiente información
 
-    -Especialidad requerida
-    -Profesional asignado
-    -Motivo de la cita(valoración, examen o control)
+    Especialidad requerida
+    Profesional asignado
+    Motivo de la cita(valoración, examen o control)
     Tener en cuenta que para la creación de la cita de tipo examen se debe contar con autorización(punto 6)
 
 **-3** Una taquilla de pagos donde se ingrese el identificador de la cita y al registrar la transacción se actualice el flag de pago, este proceso deberá añadir cada uno de los IDs a una cola de espera en el orden que fueron pagados. Todos los tickets independientemente del costo o tipo de visita deben pasar por la caja para ingresar a la cola de espera.
@@ -36,3 +36,32 @@ El sistema cuenta con los siguientes requisitos
 **3** Las vistas del sistema deben tener una distribución suficiente 23.04 LTS o Debian 12 o superior
 
 **4** La base de datos debe ser centralizada, se recomienda utilizar archivos de texto, XML o JSON o en lo posible un gestor de base de datos
+
+## Requisitos del proyecto 
+El lenguaje de programación es JAVA
+
+El desarrollo debe respetar un patrón de diseño modelo vista controlador o MVC para cada módulo
+
+Todo el proceso de diseño e implementación de diferentes vistas de la aplicación debe contar con la opinión del cliente y este será quien autorice su puesta en marcha
+
+-Las únicas estructuras de datos autorizadas y la implementación de los algoritmos deberán ser de autoría de los miembros del equipo
+
+El proyecto consta de los siguientes entregables: Especificación de requerimientos, diseño, código fuente, validación del software y evidencia de la puesta tendrán máximo 3 estudiantes
+
+Metodología de desarrollo es libre
+
+El desarrollo del proyecto deberá estar enmarcado en el cronograma de las 11 semanas
+
+El alcance de la propuesta estará en el marco de las competencias del proyecto descrito en este documento 
+
+Los equipos deben presentar un informe de seguimiento o bitácoria semanal de avance del proyecto. La bitácora debe exponer en detalle la actividad desarrollada por cada miembro del equipo y el poorcentaje como Git
+
+### La primera Entrega
+Será la propuesta de proyecto con formato (APA). Que incluye: portadas, introducción , planteamiento del problema, justificación , objetivos, marcos referenciales (conceptual, tecnológico y diseños) cronograma de actividades, referencias bibliográficas. Solo será aceptado si se evidencia el seguimientoo mencionado en el item anterior
+
+### La segunda Entrega 
+Será dereviada de un documentoo con formato (APA). Con todas las seccione que este requiera tales como: Introducción, planteamiento del pronblema, justificación, objetivos, marcos referenciales (conceptual, tecnológico y/o legal), metología, resultados  (Especificación de requerimientos, diseños e implementaciones). Cronograma de actividades, referencia bibliográfica, etc
+
+### Las referencias bibliográficas deben manejar un porcentaje de 60% en  inglés
+
+
