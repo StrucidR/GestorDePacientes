@@ -60,7 +60,7 @@ Los equipos deben presentar un informe de seguimiento o bitácoria semanal de av
 Será la propuesta de proyecto con formato (APA). Que incluye: portadas, introducción , planteamiento del problema, justificación , objetivos, marcos referenciales (conceptual, tecnológico y diseños) cronograma de actividades, referencias bibliográficas. Solo será aceptado si se evidencia el seguimientoo mencionado en el item anterior
 
 ### La segunda Entrega 
-Será derivada de un documentoo con formato (APA). Con todas las seccione que este requiera tales como: Introducción, planteamiento del pronblema, justificación, objetivos, marcos referenciales (conceptual, tecnológico y/o legal), metología, resultados  (Especificación de requerimientos, diseños e implementaciones). Cronograma de actividades, referencia bibliográfica, etc
+Será derivada de un documentoo con formato (APA). Con todas las seccione que este requiera tales como: Introducción, planteamiento del problema, justificación, objetivos, marcos referenciales (conceptual, tecnológico y/o legal), metología, resultados  (Especificación de requerimientos, diseños e implementaciones). Cronograma de actividades, referencia bibliográfica, etc
 
 ### Las referencias bibliográficas deben manejar un porcentaje de 60% en  inglés
 
