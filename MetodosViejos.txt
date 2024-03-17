@@ -1,0 +1,110 @@
+ public static void eliminarCitaSalaEsperaPrueba(String ticketCita) {
+    try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/sala_de_espera.txt"))) {
+        String linea;
+        StringBuilder contenidoNuevo = new StringBuilder();
+        while ((linea = br.readLine()) != null) {
+            String[] campos = linea.split(", ");
+            // Verificar si la línea actual corresponde a la cita a eliminar
+            if (!campos[2].equals(ticketCita)) {
+                contenidoNuevo.append(linea).append("\n");
+            }
+        }
+
+        // Escribir el nuevo contenido al archivo
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("src/main/java/com/asistentemedico/asistentedecitas/persistencia/sala_de_espera.txt"))) {
+            bw.write(contenidoNuevo.toString());
+        }
+
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+        
+
+        
+        
+        public static String[] obtenerUsuarioPorTicketPrueba(String ticketCita) {
+    try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/citas.txt"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] campos = linea.split(", ");
+            if (campos.length >= 5 && campos[4].equals(ticketCita)) {
+                // Si se encuentra el ticket, se devuelve el nombre y apellido
+                String nombre = campos[0];
+                String apellido = campos[1];
+                return new String[]{nombre, apellido};
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    // Si no se encuentra el ticket, se devuelve null
+    return null;
+}
+        
+
+        
+           public static void guardarUsuarioSalaEsperaPrueba(String nombre, String apellido, String ticketCita) {
+        // Verificar si el usuario ya está en la sala de espera
+        if (!usuarioEnSalaEsperaPrueba(nombre, apellido, ticketCita)) {
+            // Si el usuario no está en la sala de espera, guardar los datos
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(
+                    "src/main/java/com/asistentemedico/asistentedecitas/persistencia/sala_de_espera.txt", true))) {
+                bw.write(nombre + ", " + apellido + ", " + ticketCita);
+                bw.newLine(); // Agregar nueva línea para el próximo usuario
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static boolean usuarioEnSalaEsperaPrueba(String nombre, String apellido, String ticketCita) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/sala_de_espera.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] campos = linea.split(", ");
+                if (campos[0].equals(nombre) && 
+                        campos[1].equals(apellido) && 
+                        campos[2].equals(ticketCita)) {
+                    return true; // Usuario encontrado en la sala de espera
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false; // Usuario no encontrado en la sala de espera
+    }
+
+            public static void guardarUsuarioPorTicketEnSalaEspera(String ticketCita) {
+        // Obtener nombre y apellido del usuario por el ticket
+        String[] usuario = obtenerUsuarioPorTicketPrueba(ticketCita);
+
+        if (usuario != null) {
+            String nombre = usuario[0];
+            String apellido = usuario[1];
+ 
+
+            // Guardar los datos en sala_de_espera.txt
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(RUTA_SALA_ESPERA, true))) {
+                bw.write(nombre + ", " + apellido + ", " + ticketCita);
+                bw.newLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+          
+        }
+    }  
+            
+            
+                      public static void moverCitaACitasTomadasPrueba(String nombreUsuario, String apellidoUsuario, String ticket) {
+    String cita = nombreUsuario + ", " + apellidoUsuario + ", "+ ticket + ", citatomada";
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(
+            "src/main/java/com/asistentemedico/asistentedecitas/persistencia/citas_ya_tomadas.txt", true))) {
+        writer.write(cita);
+        writer.newLine();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+     

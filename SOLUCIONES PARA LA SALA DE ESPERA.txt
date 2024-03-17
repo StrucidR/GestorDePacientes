@@ -1,0 +1,8 @@
+SOLUCIONES PARA LA SALA DE ESPERA
+
+Arreglar el de obtener primero ese puede ser el que desplace todo
+
+Que se reorganice el .txt si hay mas de 2 datos y sale el primero el 2 pase a estar en el primero
+y se actualice la tabla
+
+revisar el metodo de guardarUsuarioSalaDeEspera
