@@ -1,4 +1,0 @@
-Samuel, Arango Diaz, 1116774764, 31553, GA001, 100000, Doctor Arango, Paga, Médicina General, Asesoramiento, Asistida
-Sergio, Arango Ponton, 37932655, 20455, PV001, 150000, Doctor Juan Carlos, Paga, Pedíatria, Valoración, No asistida
-Usuario, Prueba, 123, 2067, CA001, 150000, Doctor Jeison, Paga, Cardiología, Asesoramiento, No asistida
-Samuel, Arango Diaz, 1116774764, 48845, GIA001, 150000, Doctor Arango, Paga, Ginecología, Asesoramiento, No asistida
