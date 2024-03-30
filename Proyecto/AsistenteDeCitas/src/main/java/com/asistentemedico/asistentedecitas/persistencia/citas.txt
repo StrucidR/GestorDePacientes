@@ -1,0 +1,2 @@
+Samuel, Arango Diaz, 1116774764, 35710, PC001, 0, Doctor Juan Carlos, Paga, Pedíatria, Asistida, Control
+Samuel, Arango Diaz, 1116774764, 37056, PV001, 150000, Doctor Juan Carlos, Paga, Pedíatria, No asistida, Valoración
