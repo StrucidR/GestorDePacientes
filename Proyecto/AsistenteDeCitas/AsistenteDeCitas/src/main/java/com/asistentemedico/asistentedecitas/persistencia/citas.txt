@@ -1,0 +1,3 @@
+Samuel, Arango Diaz, 1116774764, 35906, GV001, 100000, Doctor Juan Carlos, Paga, Médicina General, Asistida, Valoración
+Samuel, Arango Diaz, 1116774764, 8877, CC001, 0, Doctor Juan Carlos, Paga, Cardiología, Asistida, Control
+Samuel, Arango Diaz, 1116774764, 24321, CC002, 0, Doctor Juan Carlos, Paga, Cardiología, Asistida, Control
