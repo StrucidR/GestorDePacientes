@@ -1,0 +1,2 @@
+Samuel, Arango Diaz, 1116774764, 14135, GIC001, 0, Doctor Jeison, Paga, Ginecología, Asistida, Control
+Samuel, Arango Diaz, 1116774764, 36833, GV001, 100000, Doctor Arango, Paga, Médicina General, Asistida, Valoración
