@@ -8,8 +8,10 @@ Diseños
 - Clases
 - Modelo de datos
 - Casos de uso
-- Actividades [Diagrama de actividades
+
+Actividades [Diagrama de actividades
 , flujo completo, por actividad un diagrama de actividad]
+
 - Interfaces
 
 Implementaciones
@@ -18,3 +20,5 @@ Implementaciones
 - Pruebas [Pruebas implementadas, JUnit Test]
 
 Conclusiones [Resultados o conclusiones de sistema]
+Resultados
+Bibliografias
