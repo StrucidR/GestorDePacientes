@@ -53,27 +53,33 @@ public class FlujoDeLasSalas {
     //de estados de la sala de atencion parametrizando los datos con base a
     //EstadoParaSalaDeCitasAtencionMedica
     public static DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> cargarFlujoDeSalaDeAtencion(String rutaArchivo){
-        DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> estados = new DoblementeEnlazada<>();
-        try(FileReader fr = new FileReader(rutaArchivo);
-            BufferedReader br = new BufferedReader(fr)){
-            String linea;
-            
-            while((linea = br.readLine()) != null){
-                String nombre = obtenerCampo(linea, 0);
-                String apellido = obtenerCampo(linea, 1);
-                String identificacion = obtenerCampo(linea, 2);
-                String estado = obtenerCampo(linea, 3);
-                EstadoParaSalaDeCitasAtencionMedica estadoinicial = 
+    // Crea una lista doblemente enlazada para almacenar los estados de la sala de atención médica
+    DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> estados = new DoblementeEnlazada<>();
+    try(FileReader fr = new FileReader(rutaArchivo);
+        BufferedReader br = new BufferedReader(fr)){
+        String linea;    
+        // Lee cada línea del archivo
+        while((linea = br.readLine()) != null){
+            // Obtiene los campos de la línea (nombre, apellido, identificación, estado)
+            String nombre = obtenerCampo(linea, 0);
+            String apellido = obtenerCampo(linea, 1);
+            String identificacion = obtenerCampo(linea, 2);
+            String estado = obtenerCampo(linea, 3);           
+            // Crea un nuevo estado inicial para la sala de citas de atención médica
+            EstadoParaSalaDeCitasAtencionMedica estadoinicial = 
                 new EstadoParaSalaDeCitasAtencionMedica(nombre, apellido,
                 identificacion, estado);
-                estados.agregarAlFinal(estadoinicial);
-            }
-        }catch(IOException e){
-            e.printStackTrace();
+            
+            // Agrega el estado inicial a la lista doblemente enlazada
+            estados.agregarAlFinal(estadoinicial);
         }
-        return estados;
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
-    
+    // Devuelve la lista de estados de la sala de atención médica
+    return estados;
+}   
     //FUNCIONAMIENTO cambia el estado de una sala de atencion medica a flujo continuo
     //con base a una lsita doblemente enlazada parametrizando los datos con la clase
     //EstadoParaSalaDeCitasAtencionMedica para el funcionamiento adecuado internamente
@@ -81,29 +87,45 @@ public class FlujoDeLasSalas {
     //NO RETORNADA SOLAMENTE ES UNA ACCION 
     public static void cambiarEstadoDeSalaDeAtencionMedicaAFlujoContinuo(String nombre,
         String apellido, String identificacion){
-        DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> estados = cargarFlujoDeSalaDeAtencion(RUTA_SALA_DE_ATENCION);
-        Nodo<EstadoParaSalaDeCitasAtencionMedica> nodoActual = estados.getCabeza();
+    // Carga los estados de la sala de atención médica desde el archivo
+    DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> estados = cargarFlujoDeSalaDeAtencion(RUTA_SALA_DE_ATENCION);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoParaSalaDeCitasAtencionMedica> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoParaSalaDeCitasAtencionMedica estadoActual = nodoActual.getValor();
         
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Flujo Continuo"
+            estadoActual.setEstadoDeFlujo("Flujo Continuo");
+        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
+    }
+    
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_ATENCION))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
         while(nodoActual != null){
-            EstadoParaSalaDeCitasAtencionMedica estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Flujo Continuo");
-            }
+            EstadoParaSalaDeCitasAtencionMedica estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
             nodoActual = nodoActual.getSiguiente();
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_ATENCION))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoParaSalaDeCitasAtencionMedica estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+}
+
     
     //MISMA LOGICA QUE EL METODO DE cambiarEstadoDeSalaDeAtencionMedicaAFlujoContinuo
     //PERO EN VEZ DE VOLVERLO CONTINUO LO DETIENE
@@ -114,29 +136,45 @@ public class FlujoDeLasSalas {
     //NO RETORNADA SOLAMENTE ES UNA ACCION 
     public static void cambiarEstadoDeSalaDeAtencionMedicaAFlujoDetenido(String nombre,
         String apellido, String identificacion){
-        DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> estados = cargarFlujoDeSalaDeAtencion(RUTA_SALA_DE_ATENCION);
-        Nodo<EstadoParaSalaDeCitasAtencionMedica> nodoActual = estados.getCabeza();
+    // Carga los estados de la sala de atención médica desde el archivo
+    DoblementeEnlazada<EstadoParaSalaDeCitasAtencionMedica> estados = cargarFlujoDeSalaDeAtencion(RUTA_SALA_DE_ATENCION);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoParaSalaDeCitasAtencionMedica> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoParaSalaDeCitasAtencionMedica estadoActual = nodoActual.getValor();
         
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Detenido"
+            estadoActual.setEstadoDeFlujo("Detenido");
+        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
+    }
+    
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_ATENCION))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
         while(nodoActual != null){
-            EstadoParaSalaDeCitasAtencionMedica estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Detenido");
-            }
+            EstadoParaSalaDeCitasAtencionMedica estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
             nodoActual = nodoActual.getSiguiente();
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_ATENCION))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoParaSalaDeCitasAtencionMedica estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+}
+
     
     //IMPORTANTE!!!!!!!!!
     
@@ -149,152 +187,230 @@ public class FlujoDeLasSalas {
     //PAGO DE CITAS DE FLUJO____________________________________________________
     
     public static DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> cargarFlujoDeSalaDePagos(String rutaArchivo){
-        DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> estados = new DoblementeEnlazada<>();
-        try(FileReader fr = new FileReader(rutaArchivo);
-            BufferedReader br = new BufferedReader(fr)){
-            String linea;
-            while((linea = br.readLine()) != null){
-                String nombre = obtenerCampo(linea, 0);
-                String apellido = obtenerCampo(linea, 1);
-                String identificacion = obtenerCampo(linea, 2);
-                String estado = obtenerCampo(linea, 3);
-                EstadoParaPagoDeCitasMedicas estadoInicial = 
+    // Crea una lista doblemente enlazada para almacenar los estados de la sala de pagos de citas médicas
+    DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> estados = new DoblementeEnlazada<>();
+    try(FileReader fr = new FileReader(rutaArchivo);
+        BufferedReader br = new BufferedReader(fr)){
+        String linea;
+        // Lee cada línea del archivo
+        while((linea = br.readLine()) != null){
+            // Obtiene los campos de la línea (nombre, apellido, identificación, estado)
+            String nombre = obtenerCampo(linea, 0);
+            String apellido = obtenerCampo(linea, 1);
+            String identificacion = obtenerCampo(linea, 2);
+            String estado = obtenerCampo(linea, 3);
+            // Crea un nuevo estado inicial para la sala de pagos de citas médicas
+            EstadoParaPagoDeCitasMedicas estadoInicial = 
                 new EstadoParaPagoDeCitasMedicas(nombre, apellido, 
                 identificacion, estado);
-                estados.agregarAlFinal(estadoInicial);
-            }
-        }catch(IOException e){
-            e.printStackTrace();
+            // Agrega el estado inicial a la lista doblemente enlazada
+            estados.agregarAlFinal(estadoInicial);
         }
-        return estados;
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+    // Devuelve la lista de estados de la sala de pagos de citas médicas
+    return estados;
+}
+
     
     public static void cambiarEstadoDeSalaDePagoDeCitasAFlujoContinuo(String nombre,
         String apellido, String identificacion){
-        DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> estados = cargarFlujoDeSalaDePagos(RUTA_SALA_DE_PAGO_DE_CITAS);
-        Nodo<EstadoParaPagoDeCitasMedicas> nodoActual = estados.getCabeza();
+    // Carga los estados de la sala de pago de citas médicas desde el archivo
+    DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> estados = cargarFlujoDeSalaDePagos(RUTA_SALA_DE_PAGO_DE_CITAS);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoParaPagoDeCitasMedicas> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoParaPagoDeCitasMedicas estadoActual = nodoActual.getValor();
         
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Flujo Continuo"
+            estadoActual.setEstadoDeFlujo("Flujo Continuo");
+        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
+    }
+    
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_PAGO_DE_CITAS))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
         while(nodoActual != null){
-            EstadoParaPagoDeCitasMedicas estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Flujo Continuo");
-            }
+            EstadoParaPagoDeCitasMedicas estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
             nodoActual = nodoActual.getSiguiente();
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_PAGO_DE_CITAS))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoParaPagoDeCitasMedicas estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+}
+
     
     public static void cambiarEstadoDeSalaDePagoDeCitasAFlujoDetenido(String nombre,
             String apellido, String identificacion){
-                DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> estados = cargarFlujoDeSalaDePagos(RUTA_SALA_DE_PAGO_DE_CITAS);
-        Nodo<EstadoParaPagoDeCitasMedicas> nodoActual = estados.getCabeza();
+    // Carga los estados de la sala de pago de citas médicas desde el archivo
+    DoblementeEnlazada<EstadoParaPagoDeCitasMedicas> estados = cargarFlujoDeSalaDePagos(RUTA_SALA_DE_PAGO_DE_CITAS);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoParaPagoDeCitasMedicas> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoParaPagoDeCitasMedicas estadoActual = nodoActual.getValor();
         
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Detenido"
+            estadoActual.setEstadoDeFlujo("Detenido");
+        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
+    }
+    
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_PAGO_DE_CITAS))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
         while(nodoActual != null){
-            EstadoParaPagoDeCitasMedicas estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Detenido");
-            }
+            EstadoParaPagoDeCitasMedicas estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
             nodoActual = nodoActual.getSiguiente();
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_PAGO_DE_CITAS))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoParaPagoDeCitasMedicas estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+}
+
     
     //SALA DE AUTORIZACIONES FLUJO______________________________________________
     
     public static DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> cargarFlujoDeLaSalaDeAutorizacione(String rutaArchivo){
-        DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> estados = new DoblementeEnlazada<>();
-        try(FileReader fr = new FileReader(rutaArchivo);
-            BufferedReader br = new BufferedReader(fr)){
-            String linea;
-            while((linea = br.readLine()) != null){
-                String nombre = obtenerCampo(linea, 0);
-                String apellido = obtenerCampo(linea, 1);
-                String identificacion = obtenerCampo(linea, 2);
-                String estado = obtenerCampo(linea, 3);
-                EstadoDeFlujoParaAutorizaciones estadoInicial = 
+    // Crea una lista doblemente enlazada para almacenar los estados de flujo de la sala de autorizaciones
+    DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> estados = new DoblementeEnlazada<>();
+    try(FileReader fr = new FileReader(rutaArchivo);
+        BufferedReader br = new BufferedReader(fr)){
+        String linea;
+        // Lee cada línea del archivo
+        while((linea = br.readLine()) != null){
+            // Obtiene los campos de la línea (nombre, apellido, identificación, estado)
+            String nombre = obtenerCampo(linea, 0);
+            String apellido = obtenerCampo(linea, 1);
+            String identificacion = obtenerCampo(linea, 2);
+            String estado = obtenerCampo(linea, 3);
+            // Crea un nuevo estado inicial para la sala de autorizaciones
+            EstadoDeFlujoParaAutorizaciones estadoInicial = 
                 new EstadoDeFlujoParaAutorizaciones(nombre, apellido, identificacion,
                 estado);
-                estados.agregarAlFinal(estadoInicial);
-            }
-        }catch(IOException e){
-            e.printStackTrace();
+            // Agrega el estado inicial a la lista doblemente enlazada
+            estados.agregarAlFinal(estadoInicial);
         }
-        return estados;
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+    // Devuelve la lista de estados de flujo de la sala de autorizaciones
+    return estados;
+}
     
     public static void cambiarEstadoDeSalaDeAutorizacionesAFlujoContinuo(String nombre,
         String apellido, String identificacion){
-        DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> estados = cargarFlujoDeLaSalaDeAutorizacione(RUTA_SALA_DE_AUTORIZACIONES);
-        Nodo<EstadoDeFlujoParaAutorizaciones> nodoActual = estados.getCabeza();
+    // Carga los estados de flujo de la sala de autorizaciones desde el archivo
+    DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> estados = cargarFlujoDeLaSalaDeAutorizacione(RUTA_SALA_DE_AUTORIZACIONES);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoDeFlujoParaAutorizaciones> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoDeFlujoParaAutorizaciones estadoActual = nodoActual.getValor();
         
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Flujo Continuo"
+            estadoActual.setEstadoDeFlujo("Flujo Continuo");
+        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
+    }
+    
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_AUTORIZACIONES))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
         while(nodoActual != null){
-            EstadoDeFlujoParaAutorizaciones estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Flujo Continuo");
-            }
+            EstadoDeFlujoParaAutorizaciones estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
             nodoActual = nodoActual.getSiguiente();
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_AUTORIZACIONES))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoDeFlujoParaAutorizaciones estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+}
+
     
     public static void cambiarEstadoDeSalaDeAutorizacionesAFlujoDetenido(String nombre,
         String apellido, String identificacion){
-        DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> estados = cargarFlujoDeLaSalaDeAutorizacione(RUTA_SALA_DE_AUTORIZACIONES);
-        Nodo<EstadoDeFlujoParaAutorizaciones> nodoActual = estados.getCabeza();
+    // Carga los estados de flujo de la sala de autorizaciones desde el archivo
+    DoblementeEnlazada<EstadoDeFlujoParaAutorizaciones> estados = cargarFlujoDeLaSalaDeAutorizacione(RUTA_SALA_DE_AUTORIZACIONES);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoDeFlujoParaAutorizaciones> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoDeFlujoParaAutorizaciones estadoActual = nodoActual.getValor();
         
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Detenido"
+            estadoActual.setEstadoDeFlujo("Detenido");
+        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
+    }
+    
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_AUTORIZACIONES))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
         while(nodoActual != null){
-            EstadoDeFlujoParaAutorizaciones estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Detenido");
-            }
+            EstadoDeFlujoParaAutorizaciones estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
             nodoActual = nodoActual.getSiguiente();
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_AUTORIZACIONES))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoDeFlujoParaAutorizaciones estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
     }
+}
     
     //SALA DE PAGO DE EXAMENES FLUJO_______________________________________
     
@@ -420,30 +536,45 @@ public class FlujoDeLasSalas {
         }
     }
     
-    public static void cambiarEstadoDeSalaDeAtencionDeExamenesAFlujoDetenido(String nombre,
+   public static void cambiarEstadoDeSalaDeAtencionDeExamenesAFlujoDetenido(String nombre,
         String apellido, String identificacion){
-        DoblementeEnlazada<EstadoDeFlujoParaAtencionDeExamenes> estados = cargarFlujoDeSalaDeAtencionDeExamenes(RUTA_SALA_DE_ATENCION_EXAMENES);
-        Nodo<EstadoDeFlujoParaAtencionDeExamenes> nodoActual = estados.getCabeza();
+    // Carga los estados de flujo de la sala de atención de exámenes desde el archivo
+    DoblementeEnlazada<EstadoDeFlujoParaAtencionDeExamenes> estados = cargarFlujoDeSalaDeAtencionDeExamenes(RUTA_SALA_DE_ATENCION_EXAMENES);
+    
+    // Inicia en el primer nodo de la lista de estados
+    Nodo<EstadoDeFlujoParaAtencionDeExamenes> nodoActual = estados.getCabeza();
+    
+    // Recorre la lista de estados
+    while(nodoActual != null){
+        // Obtiene el estado actual
+        EstadoDeFlujoParaAtencionDeExamenes estadoActual = nodoActual.getValor();
         
-        while(nodoActual != null){
-            EstadoDeFlujoParaAtencionDeExamenes estadoActual = nodoActual.getValor();
-            if(estadoActual.getNombre().equals(nombre) &&
-               estadoActual.getApellido().equals(apellido) &&
-               estadoActual.getIdentificacion().equals(identificacion)){
-                estadoActual.setEstadoDeFlujo("Detenido");
-            }
-            nodoActual = nodoActual.getSiguiente();
+        // Comprueba si el estado coincide con el nombre, apellido e identificación proporcionados
+        if(estadoActual.getNombre().equals(nombre) &&
+           estadoActual.getApellido().equals(apellido) &&
+           estadoActual.getIdentificacion().equals(identificacion)){
+            // Cambia el estado a "Detenido"
+            estadoActual.setEstadoDeFlujo("Detenido");
         }
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_ATENCION_EXAMENES))){
-            nodoActual = estados.getCabeza();
-            while(nodoActual != null){
-                EstadoDeFlujoParaAtencionDeExamenes estadoespecifico = nodoActual.getValor();
-                writer.write(estadoespecifico.toString() + "\n");
-                nodoActual = nodoActual.getSiguiente();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        // Avanza al siguiente nodo
+        nodoActual = nodoActual.getSiguiente();
     }
     
+    // Escribe los estados actualizados de vuelta al archivo
+    try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SALA_DE_ATENCION_EXAMENES))){
+        // Reinicia la iteración desde el primer nodo
+        nodoActual = estados.getCabeza();
+        // Escribe cada estado en una nueva línea del archivo
+        while(nodoActual != null){
+            EstadoDeFlujoParaAtencionDeExamenes estadoEspecifico = nodoActual.getValor();
+            writer.write(estadoEspecifico.toString() + "\n");
+            // Avanza al siguiente nodo
+            nodoActual = nodoActual.getSiguiente();
+        }
+    }catch(IOException e){
+        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
+        e.printStackTrace();
+    }
 }
+}
+
