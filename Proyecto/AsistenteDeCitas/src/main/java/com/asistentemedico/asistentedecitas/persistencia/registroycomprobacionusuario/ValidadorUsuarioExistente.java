@@ -36,17 +36,23 @@ public class ValidadorUsuarioExistente {
      * @param linea La línea del archivo a parsear.
      * @return El objeto Usuario parseado o null si la línea no es válida.
      */
-private static Usuario parsearUsuario(String linea) {
+    private static Usuario parsearUsuario(String linea) {
+    // Encuentra las posiciones de las comas en la línea
     int primeraComa = linea.indexOf(',');
-    int segundaComa = linea.indexOf(',', primeraComa+1);
-    if(primeraComa != -1 && segundaComa != -1){
+    int segundaComa = linea.indexOf(',', primeraComa + 1);
+    
+    // Verifica si se encontraron ambas comas
+    if (primeraComa != -1 && segundaComa != -1) {
+        // Extrae los campos de la línea y los asigna a variables
         String nombre = linea.substring(0, primeraComa).trim();
-        String apellido = linea.substring(primeraComa +1 , segundaComa).trim();
-        String identificacion = linea.substring(segundaComa+1).trim();
-        // Crear y devolver un nuevo objeto Usuario
-        return new Usuario(nombre, apellido, identificacion, "","","");
-    }else{
+        String apellido = linea.substring(primeraComa + 1, segundaComa).trim();
+        String identificacion = linea.substring(segundaComa + 1).trim();
+        
+        // Crea y retorna un nuevo objeto Usuario con los campos extraídos
+        return new Usuario(nombre, apellido, identificacion, "", "", "");
+    } else {
+        // Retorna null si la línea no contiene ambas comas esperadas
         return null;
     }
-}
+}   
 }
