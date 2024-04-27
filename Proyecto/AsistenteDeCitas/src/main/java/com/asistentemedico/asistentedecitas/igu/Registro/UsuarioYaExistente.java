@@ -288,7 +288,7 @@ public class UsuarioYaExistente extends javax.swing.JFrame {
 
         jRadioButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(0, 102, 153));
-        jRadioButton1.setText("AceptarTérminos");
+        jRadioButton1.setText("Aceptar Términos");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);

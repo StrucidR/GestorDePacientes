@@ -617,6 +617,9 @@ public class Registro extends javax.swing.JFrame {
         return true;
 }
     private void registrarbotomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarbotomActionPerformed
+     
+     String identificacion = identificacionEntrada1.getText();
+     
      if (validarDatos() && jRadioButton1.isSelected()) //Condicional
      {   //Creamos el usuario
          Usuario usuario = new Usuario(nombreEntrada.getText(), 
@@ -626,7 +629,9 @@ public class Registro extends javax.swing.JFrame {
          telefonodoEntrada.getText(), 
           new String(passwordEntrada1.getPassword()));
         
-         if(ValidadorUsuarioExistente.usuarioExiste(usuario))
+         boolean existente = ValidadorUsuarioExistente.usuarioExiste(identificacion);
+         
+         if(existente==true)
          {
              this.dispose();
              UsuarioYaExistente ventana= new UsuarioYaExistente();

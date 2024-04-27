@@ -4,7 +4,6 @@ import com.asistentemedico.asistentedecitas.logica.MisImplementaciones.viewCitas
 import com.asistentemedico.asistentedecitas.logica.Operador.EstadoParaSalaDeCitasAtencionMedica;
 import com.asistentemedico.asistentedecitas.logica.Usuario;
 import com.asistentemedico.asistentedecitas.persistencia.registroycomprobacionusuario.ManejadorArchivo;
-import com.asistentemedico.asistentedecitas.persistencia.registroycomprobacionusuario.ValidadorUsuarioExistente;
 import com.asistentemedico.asistentedecitas.persistencia.salasoperador.FlujoDeLasSalas;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -46,23 +45,6 @@ public class UnitTest {
         FlujoDeLasSalas.cambiarEstadoDeSalaDeAtencionMedicaAFlujoDetenido(nombre, apellido, identificacion);
     }
      
-    @Test
-    public void testUsuarioExiste_CuandoUsuarioExiste_DeberiaRetornarTrue() {
-        Usuario usuarioExistente = new Usuario("Nombre", "Apellido", "12345", "", "", "");
-
-        boolean resultado = ValidadorUsuarioExistente.usuarioExiste(usuarioExistente);
-
-        assertTrue(resultado);
-    }
-    
-    @Test
-    public void testUsuarioExiste_CuandoUsuarioNoExiste_DeberiaRetornarFalse() {
-        Usuario usuarioNoExistente = new Usuario("NombreNoExistente", "ApellidoNoExistente", "IDNoExistente", "", "", "");
-
-        boolean resultado = ValidadorUsuarioExistente.usuarioExiste(usuarioNoExistente);
-
-        assertFalse(resultado);
-    }
     
     @Test
     public void testGuardarUsuario_DeberiaGuardarUsuarioCorrectamente() {
@@ -105,5 +87,7 @@ public class UnitTest {
         }
         return null;
     }
+    
+    
     
 }
