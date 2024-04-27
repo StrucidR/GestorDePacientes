@@ -1,0 +1,4 @@
+Ejemplo, Uno Dos, 123456789, 34078, GV001, 100000, Doctor Arango, Paga, Médicina General, Asistida, Valoración
+Ejemplo, Uno Dos, 123456789, 25460, CC001, 0, Doctor Jeison, Paga, Cardiología, No asistida, Control
+Samuel, Arango Diaz, 1116774764, 44732, PA001, 150000, Doctor Juan Carlos, Paga, Pedíatria, Asistida, Asesoramiento
+Samuel, Arango Diaz, 1116774764, 47514, CC002, 0, Doctor Arango, Paga, Cardiología, Asistida, Control
