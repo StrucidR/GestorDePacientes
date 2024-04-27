@@ -239,7 +239,7 @@ public class EntradadeExamenes extends javax.swing.JFrame {
 
         SalaDeEspera.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SalaDeEspera.setForeground(new java.awt.Color(0, 102, 153));
-        SalaDeEspera.setText("Sala de Espera");
+        SalaDeEspera.setText("Sala de atención");
         SalaDeEspera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalaDeEsperaActionPerformed(evt);

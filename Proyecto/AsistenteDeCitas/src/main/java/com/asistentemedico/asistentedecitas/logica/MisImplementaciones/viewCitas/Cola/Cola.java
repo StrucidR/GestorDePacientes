@@ -103,36 +103,5 @@ public class Cola <T> implements ListaCola<T>{
 		}
 	}
 
-	//Eliminamos por elemento algo asi como por indice
-	public T dequeue(T clienteAEliminar) {
-		if (estaVacia()) {
-			throw new IndexOutOfBoundsException("La cola está vacía");
-		}
-
-
-		if (cabeza.getValor().equals(clienteAEliminar)) {
-			return dequeue();
-		}
-
-
-		Nodo<T> guia = cabeza;
-		while (guia.getSiguiente() != null && 
-                !guia.getSiguiente().getValor().equals(clienteAEliminar)) {
-			guia = guia.getSiguiente();
-		}
-		//condición en el bucle while se detiene cuando el siguiente nodo no es nulo 
-		//(lo que significa que hay más nodos en la cola) y el valor del siguiente nodo no es igual al cliente
-
-		if (guia.getSiguiente() != null) {
-			if (guia.getSiguiente() == cola) {
-				cola = guia;
-			}
-			T valor = guia.getSiguiente().getValor();
-			guia.setSiguiente(guia.getSiguiente().getSiguiente());//actualizamos referencias algo asi como eliminar en doblemente enlazada
-			return valor;
-		} else {
-			throw new IndexOutOfBoundsException("El cliente especificado no está en la cola");
-		}
-	}
 
 }

@@ -6,6 +6,8 @@ import com.asistentemedico.asistentedecitas.igu.Principal.Principal;
 import com.asistentemedico.asistentedecitas.igu.examenes.EntradadeExamenes;
 import com.asistentemedico.asistentedecitas.igu.pagodecitas.pagodeCitasPrimeraEntrada;
 import com.asistentemedico.asistentedecitas.logica.MisImplementaciones.viewCitas.ListaSencilla.Sencilla;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -19,6 +21,13 @@ public class VisualizadorDeAutorizacionesExitosas extends javax.swing.JFrame {
     
     DefaultTableModel tabla1= new DefaultTableModel();
     private Sencilla<String[]> citasUsuario = new Sencilla<>();
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Imagenlogo.png"));
+        
+        return retValue;
+    }
     
     public VisualizadorDeAutorizacionesExitosas(String nombreUsuario, String apellidoUsuario,
         String identificacion) {

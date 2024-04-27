@@ -40,7 +40,6 @@ com\asistentemedico\asistentedecitas\igu\autorizacion\FiltroDeAutorizacion$18.cl
 com\asistentemedico\asistentedecitas\igu\examenes\ErrorAlAgendarPorCredencialesOFaltaDeDatos$3.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Saladeespera\SalaDeEspera$8.class
 com\asistentemedico\asistentedecitas\igu\examenes\ustedYaCuentaconUnExamen$14.class
-.netbeans_automatic_build
 com\asistentemedico\asistentedecitas\igu\autorizacion\ErrorAlCancelarUnaAutorizacion$5.class
 com\asistentemedico\asistentedecitas\igu\autorizacion\ustedYaCuentaConUnaAutorizacion$8.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Agendamientodecita\cancelacion\ErroralCancelarLaCita$16.class

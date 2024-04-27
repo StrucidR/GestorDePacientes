@@ -71,33 +71,31 @@
                                       <Component id="nombreEntrada" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jRadioButton1" min="-2" pref="159" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel11" min="-2" pref="416" max="-2" attributes="0"/>
-                                              <Component id="jLabel10" min="-2" pref="416" max="-2" attributes="0"/>
-                                              <Component id="jLabel12" alignment="0" min="-2" pref="416" max="-2" attributes="0"/>
-                                              <Component id="jLabel13" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
-                                              <Component id="jLabel16" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
-                                              <Component id="jLabel17" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
-                                              <Component id="jLabel19" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
-                                              <Component id="jLabel20" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
-                                              <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="sobreNosotros1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="registrarbotom" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                      <Component id="limpiarBotom" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="jLabel21" min="-2" pref="204" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel11" min="-2" pref="416" max="-2" attributes="0"/>
+                                          <Component id="jLabel10" min="-2" pref="416" max="-2" attributes="0"/>
+                                          <Component id="jLabel12" alignment="0" min="-2" pref="416" max="-2" attributes="0"/>
+                                          <Component id="jLabel13" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                          <Component id="jLabel16" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                          <Component id="jLabel17" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                          <Component id="jLabel19" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                          <Component id="jLabel20" alignment="0" min="-2" pref="447" max="-2" attributes="0"/>
+                                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="sobreNosotros1" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="registrarbotom" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                  <Component id="limpiarBotom" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jLabel21" min="-2" pref="204" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="258" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="jRadioButton1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="apellidoEntrada1" min="-2" pref="286" max="-2" attributes="0"/>
@@ -688,7 +686,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="66" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="AceptarT&#xe9;rminos"/>
+            <Property name="text" type="java.lang.String" value="Aceptar t&#xe9;rminos y condiciones"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>

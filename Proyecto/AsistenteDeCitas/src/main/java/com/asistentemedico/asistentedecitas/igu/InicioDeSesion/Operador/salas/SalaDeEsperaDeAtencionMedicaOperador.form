@@ -47,8 +47,8 @@
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="sobreNosotros1" min="-2" pref="313" max="-2" attributes="0"/>
-                          <EmptySpace min="18" pref="791" max="32767" attributes="0"/>
+                          <Component id="sobreNosotros1" min="-2" pref="680" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel1" alignment="1" min="-2" pref="71" max="-2" attributes="0"/>
                               <Component id="mostradordeusuario" alignment="1" min="-2" pref="143" max="-2" attributes="0"/>
@@ -313,7 +313,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="66" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SALA DE ESPERA"/>
+            <Property name="text" type="java.lang.String" value="SALA DE ESPERA ATENCI&#xd3;N M&#xc9;DICA"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

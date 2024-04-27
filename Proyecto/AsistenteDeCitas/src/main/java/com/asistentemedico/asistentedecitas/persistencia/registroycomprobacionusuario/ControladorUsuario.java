@@ -22,6 +22,9 @@ public class ControladorUsuario {
      * @param contrasenia  La contraseña del usuario.
      * @return true si el inicio de sesión es exitoso, false de lo contrario.
      */
+    
+    //Espera que le pasemos parametros y una vez identificado si es encontrado retorna
+    //true o false
         public static boolean validarInicioSesion(String nombre, String apellido, String identificacion, String contrasenia) {
         NodoUsuario actual = ultimo;
         if (actual == null) return false; // No hay usuarios cargados
@@ -43,40 +46,30 @@ public class ControladorUsuario {
      * @param usuario El usuario a agregar.
      */
     private static void agregarUsuario(Usuario usuario) {
-    // Crea un nuevo nodo de usuario con el usuario proporcionado
-    NodoUsuario nuevo = new NodoUsuario(usuario);
-    
-    // Verifica si la lista está vacía
-    if (ultimo == null) {
-        // Si la lista está vacía, el nuevo nodo se convierte en el único nodo en la lista
-        nuevo.setSiguiente(nuevo);
-        ultimo = nuevo;
-    } else {
-        // Si la lista no está vacía, se inserta el nuevo nodo después del último nodo
-        nuevo.setSiguiente(ultimo.getSiguiente());
-        ultimo.setSiguiente(nuevo);
-        ultimo = nuevo;
+        NodoUsuario nuevo = new NodoUsuario(usuario);
+        if (ultimo == null) {
+            nuevo.setSiguiente(nuevo);
+            ultimo = nuevo;
+        } else {
+            nuevo.setSiguiente(ultimo.getSiguiente());
+            ultimo.setSiguiente(nuevo);
+            ultimo = nuevo;
+        }
     }
-}
 
     public static void cargarUsuarios() {
-    try (BufferedReader reader = new BufferedReader(new FileReader(RUTA_ARCHIVO))) {
-        String linea;
-        // Lee cada línea del archivo
-        while ((linea = reader.readLine()) != null) {
-            // Parsea la línea para crear un usuario
-            Usuario usuario = parsearUsuario(linea);
-            // Verifica si el usuario es válido
-            if (usuario != null) {
-                // Agrega el usuario a la lista circular de usuarios
-                agregarUsuario(usuario);
+        try (BufferedReader reader = new BufferedReader(new FileReader(RUTA_ARCHIVO))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                Usuario usuario = parsearUsuario(linea);
+                if (usuario != null) {
+                    agregarUsuario(usuario);
+                }
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    } catch (IOException e) {
-        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
-        e.printStackTrace();
     }
-}
     /**
      * Parsea una línea del archivo de registros y crea un objeto Usuario.
      *
@@ -84,30 +77,28 @@ public class ControladorUsuario {
      * @return El objeto Usuario creado, o null si hay un error en el formato de la línea.
      */
     private static Usuario parsearUsuario(String linea) {
-    // Encuentra las posiciones de las comas en la línea
         int primeraComa = linea.indexOf(',');
-        int segundaComa = linea.indexOf(',', primeraComa + 1);
-        int terceraComa = linea.indexOf(',', segundaComa + 1);
-        int cuartaComa = linea.indexOf(',', terceraComa + 1);
-        int quintaComa = linea.indexOf(',', cuartaComa + 1);
+        int segundaComa = linea.indexOf(',' , primeraComa + 1);
+        int terceraComa = linea.indexOf(',' , segundaComa + 1);
+        int cuartaComa = linea.indexOf(',' , terceraComa + 1 );
+        int quintaComa = linea.indexOf(',' , cuartaComa + 1 );
 
-    // Verifica si todas las comas fueron encontradas
-        if (primeraComa != -1 && segundaComa != -1 && terceraComa != -1
-            && cuartaComa != -1 && quintaComa != -1) {
-        // Extrae los campos de la línea y los asigna a variables
+        if(primeraComa != -1 && segundaComa!= -1 && terceraComa !=-1
+        && cuartaComa!=-1 && quintaComa != -1){
+            
             String nombre = linea.substring(0, primeraComa).trim();
             String apellido = linea.substring(primeraComa + 1, segundaComa).trim();
-            String identificacion = linea.substring(segundaComa + 1, terceraComa).trim();
-            String edad = linea.substring(terceraComa + 1, cuartaComa).trim();
-            String telefono = linea.substring(cuartaComa + 1, quintaComa).trim();
-            String contrasenia = linea.substring(quintaComa + 1).trim();
-        
-        // Crea y retorna un nuevo objeto Usuario con los campos extraídos
-            return new Usuario(nombre, apellido, identificacion, edad, telefono, contrasenia);
-        } else {
-        // Retorna null si la línea no contiene todos los campos esperados
-            return null;
+            String identificacion = linea.substring(segundaComa+1, terceraComa).trim();
+            String edad = linea.substring(terceraComa+1, cuartaComa).trim();
+            String telefono = linea.substring(cuartaComa +1, quintaComa).trim();
+            String contrasenia = linea.substring(quintaComa +1).trim();
+            
+            return new Usuario(nombre, apellido, identificacion, edad, telefono,
+            contrasenia);
         }
+        else{
+        return null;
+    }
     }
      /**
      * Clase interna para representar un nodo de usuario en una lista enlazada.

@@ -330,7 +330,7 @@ public class SalaDeEsperaDeAtencionMedicaOperador extends javax.swing.JFrame {
 
         sobreNosotros1.setFont(new java.awt.Font("Tahoma", 1, 34)); // NOI18N
         sobreNosotros1.setForeground(new java.awt.Color(0, 102, 153));
-        sobreNosotros1.setText("SALA DE ESPERA");
+        sobreNosotros1.setText("SALA DE ESPERA ATENCIÓN MÉDICA");
 
         tabla.setFont(new java.awt.Font("Segoe UI Variable", 1, 14)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -409,8 +409,8 @@ public class SalaDeEsperaDeAtencionMedicaOperador extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(sobreNosotros1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 791, Short.MAX_VALUE)
+                        .addComponent(sobreNosotros1, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mostradordeusuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))

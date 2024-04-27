@@ -64,32 +64,24 @@ public class GestordeSala {
 }
     
         public static DoblementeEnlazada<SalaDeCitas> cargarCitasEnEsperaParaSerAtendidas(String rutaArchivo){
-    // Crea una lista doblemente enlazada para almacenar las citas en espera de ser atendidas
-    DoblementeEnlazada<SalaDeCitas> citas = new DoblementeEnlazada<>();
-    try(FileReader fr = new FileReader(rutaArchivo);
-        BufferedReader br = new BufferedReader(fr)){
-        String linea;
-        // Lee cada línea del archivo
-        while((linea = br.readLine()) != null){
-            // Obtiene los campos de la línea (nombre, apellido, identificación, identificador de cita, ticket)
-            String nombre = obtenerCampo(linea, 0);
-            String apellido = obtenerCampo(linea, 1);
-            String identificacion = obtenerCampo(linea, 2);
-            String identificadorDeCita = obtenerCampo(linea, 3);
-            String ticket = obtenerCampo(linea, 4);
-            // Crea una nueva sala de citas con los datos obtenidos
-            SalaDeCitas sala = new SalaDeCitas(nombre, apellido, identificacion, identificadorDeCita, ticket);
-            // Agrega la sala de citas a la lista doblemente enlazada
-            citas.agregarAlFinal(sala);
+        DoblementeEnlazada<SalaDeCitas> citas = new DoblementeEnlazada<>();
+        try(FileReader fr = new FileReader(rutaArchivo);
+            BufferedReader br = new BufferedReader(fr)){
+            String linea;
+            while((linea = br.readLine()) != null){
+                String nombre = obtenerCampo(linea, 0);
+                String apellido = obtenerCampo(linea, 1);
+                String identificacion = obtenerCampo(linea, 2);
+                String identificadorDeCita = obtenerCampo(linea, 3);
+                String ticket = obtenerCampo(linea, 4);
+                SalaDeCitas sala = new SalaDeCitas(nombre, apellido, identificacion,identificadorDeCita,ticket);
+                citas.agregarAlFinal(sala);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
         }
-    }catch(IOException e){
-        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
-        e.printStackTrace();
+        return citas;
     }
-    // Devuelve la lista de citas en espera de ser atendidas
-    return citas;
-}
-
         
     private static String obtenerCampo(String linea, int indice){
         //OBTENEMOS EL CAMPO DE INICIO Y CONTADOR Y UN WHILE 
@@ -131,30 +123,20 @@ public class GestordeSala {
 }
 
     public static boolean verificarAsistencia(String ticket){
-    // Carga las citas desde el archivo
-    DoblementeEnlazada<Cita> citas = cargarCitasDesdeArchivo(RUTA_ARCHIVO);
-    
-    // Inicia en el primer nodo de la lista de citas
-    Nodo<Cita> nodoActual = citas.getCabeza();
-    
-    // Recorre la lista de citas
-    while(nodoActual != null){
-        // Obtiene la cita actual
-        Cita citaActual = nodoActual.getValor();
         
-        // Comprueba si el ticket de la cita coincide y si la asistencia es "Asistida"
-        if(citaActual.getTicket().equals(ticket) && 
-           citaActual.getAsistencia().equalsIgnoreCase("Asistida")){
-            // Retorna verdadero si la asistencia está registrada como "Asistida"
-            return true;
+        DoblementeEnlazada<Cita> citas = cargarCitasDesdeArchivo(RUTA_ARCHIVO);
+        Nodo<Cita> nodoActual=citas.getCabeza();
+        while(nodoActual != null){
+            Cita citaActual = nodoActual.getValor();
+            if(citaActual.getTicket().equals(ticket) && 
+               citaActual.getAsistencia().equalsIgnoreCase("Asistida")){
+                return true;
+            }
+            nodoActual = nodoActual.getSiguiente();
         }
-        // Avanza al siguiente nodo
-        nodoActual = nodoActual.getSiguiente();
+        
+        return false;
     }
-    
-    // Retorna falso si no se encuentra ninguna cita con el ticket proporcionado o si la asistencia no está registrada como "Asistida"
-    return false;
-}
     
     //HASTA ESTÁ SECCION SE IMPLEMENTA CARGA DE CITAS DESDE ARCHIVO PARA VERIFICACION
     //DE ASISTENCIA Y PAGO
@@ -179,34 +161,21 @@ public class GestordeSala {
     
     public static boolean usuarioEnSala(String nombreUsuario, String apellidoUsuario,
     String identificacion, String identificadorDeLaCita, String ticket){
-    // Carga las citas en espera para ser atendidas desde el archivo
-    DoblementeEnlazada<SalaDeCitas> citas = cargarCitasEnEsperaParaSerAtendidas(RUTA_SALA_DE_ESPERA);
-    
-    // Inicia en el primer nodo de la lista de citas en espera
-    Nodo<SalaDeCitas> nodoActual = citas.getCabeza();
-    
-    // Recorre la lista de citas en espera
-    while(nodoActual != null){
-        // Obtiene la cita actual
-        SalaDeCitas citaActual = nodoActual.getValor();
-        
-        // Comprueba si los datos de la cita coinciden con los proporcionados por el usuario
-        if(citaActual.getNombre().equals(nombreUsuario) &&
-           citaActual.getApellido().equals(apellidoUsuario) &&
-           citaActual.getIdentificacion().equals(identificacion) &&
-           citaActual.getIdentificadordecita().equals(identificadorDeLaCita) &&
-           citaActual.getTicketDeCita().equals(ticket)){
-            // Retorna verdadero si el usuario se encuentra en la sala de espera con los datos proporcionados
-            return true;
+        DoblementeEnlazada<SalaDeCitas> citas = cargarCitasEnEsperaParaSerAtendidas(RUTA_SALA_DE_ESPERA);
+        Nodo<SalaDeCitas> nodoActual = citas.getCabeza();
+        while(nodoActual != null){
+            SalaDeCitas citaActual = nodoActual.getValor();
+            if(citaActual.getNombre().equals(nombreUsuario) &&
+               citaActual.getApellido().equals(apellidoUsuario) &&
+               citaActual.getIdentificacion().equals(identificacion) &&
+               citaActual.getIdentificadordecita().equals(identificadorDeLaCita) &&
+               citaActual.getTicketDeCita().equals(ticket)){
+                return true;
+            }
+            nodoActual = nodoActual.getSiguiente();
         }
-        // Avanza al siguiente nodo
-        nodoActual = nodoActual.getSiguiente();
+        return false;
     }
-    
-    // Retorna falso si el usuario no se encuentra en la sala de espera con los datos proporcionados
-    return false;
-}
-
         
     private static DoblementeEnlazada<String> readAutorizacionesFromFile() throws IOException {
          DoblementeEnlazada<String> autorizaciones = new DoblementeEnlazada<>();
@@ -262,22 +231,15 @@ public class GestordeSala {
     //DE INICIO Y GUARDADO DE CAMBIOS RECIENTE
     
     public static void eliminarDeSalaDelMedio(String ticket){
-    try{
-        // Carga los datos de la sala de espera desde el archivo
-        DoblementeEnlazada<SalaDeCitas> citas = cargarDatosDesdeSala(RUTA_SALA_DE_ESPERA);
-        
-        // Elimina la cita específica de la sala de espera, si está en el medio de la lista, por su ticket
-        citas.eliminarDelMedioPorTicket(ticket);
-        
-        // Escribe las citas actualizadas de vuelta al archivo
-        writeCitasToFile(citas);
+        try{
+            DoblementeEnlazada<SalaDeCitas> citas = cargarDatosDesdeSala(RUTA_SALA_DE_ESPERA);
+            citas.eliminarDelMedioPorTicket(ticket);
+            writeCitasToFile(citas);
 
-    }catch(IOException e){
-        // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
-        e.printStackTrace();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
-}
-
 /**
  * Método utilizado para escribir las citas de una lista doblemente enlazada en un archivo de texto.
  *
@@ -361,28 +323,21 @@ public class GestordeSala {
     
     //MARCAR CITA COMO ASISTIDA
     public static void moverAutorizaciones(String nombreUsuario, String apellidoUsuario, String identificacion, String ticket) {
-         // Carga las citas desde el archivo
         DoblementeEnlazada<Cita>  citas = cargarCitasDesdeArchivo(RUTA_ARCHIVO);
         //INICIALMENTE PARAMETRIZAMOS LOS DATOS LEIDOS LUEGO REESCRIBIMOS CON BASE AL TO.STRING
         //EN EL DOCUMENTO Y EL FUNCIONAMIENTO CONTINUA IGUAL, CLAVE DE ESTE PROYECTO EL ORDEN
         //Y ASIGNACION DE RESPONSABILIDADES Y TAREAS INDEPENDIENTES POR METODO SIN LA NECESIDAD DE INTERVENIR
         //O REUTILIZAR METODOS QUE SON EXCLUSIVOS PARA EL FUNCIONAMIENTO Y LECTURA DE DATOS INTERNOS
-        
-        // Itera sobre cada cita para encontrar la que coincide con los datos proporcionados
         Nodo<Cita> nodoActual = citas.getCabeza();
         while(nodoActual != null){
             Cita citaActual = nodoActual.getValor();
             if(citaActual.getNombre().equals(nombreUsuario) && 
                citaActual.getApellido().equals(apellidoUsuario) && 
                citaActual.getTicket().equals(ticket)){
-                // Si se encuentra la cita, marca la asistencia como "Asistida"
                 citaActual.setAsistencia("Asistida");
             }
-            // Avanza al siguiente nodo
-
             nodoActual = nodoActual.getSiguiente();   
         }
-            // Escribe las citas actualizadas de vuelta al archivo
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_ARCHIVO))){
             nodoActual = citas.getCabeza();
             while(nodoActual != null){
@@ -392,7 +347,6 @@ public class GestordeSala {
             }
             
         }catch(IOException e){
-               // Maneja cualquier excepción de E/S imprimiendo el rastreo de la pila
             e.printStackTrace();
         }
 } 

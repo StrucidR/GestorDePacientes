@@ -14,7 +14,10 @@ public class Cita {
     private String asistencia;
     private String motivo;
 
-    public Cita(String nombre, String apellido, String identificacion, String identificador, String ticket, String costo, String doctor, String estado, String especialidad, String asistencia, String motivo) {
+    public Cita(String nombre, String apellido, String identificacion, 
+    String identificador, String ticket, String costo, String doctor, 
+    String estado, String especialidad, String asistencia, String motivo) {
+        
         this.nombre = nombre;
         this.apellido = apellido;
         this.identificacion = identificacion;

@@ -16,6 +16,7 @@ public class SalaParaElPago {
 
     public String getNombreUsuario() {
         return nombreUsuario;
+        
     }
 
     public void setNombreUsuario(String nombreUsuario) {

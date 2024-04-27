@@ -6,12 +6,21 @@ import com.asistentemedico.asistentedecitas.igu.Principal.Principal;
 import com.asistentemedico.asistentedecitas.igu.examenes.EntradadeExamenes;
 import com.asistentemedico.asistentedecitas.igu.pagodecitas.pagodeCitasPrimeraEntrada;
 import com.asistentemedico.asistentedecitas.persistencia.Autorizacion.GestorAutorizacion;
+import java.awt.Image;
+import java.awt.Toolkit;
 
 public class cancelacionDeAutorizaciones extends javax.swing.JFrame {
     
     private String nombreUsuario;
     private String apellidoUsuario;
     private String identificacion;
+    
+    @Override
+    public Image getIconImage(){
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/Imagenlogo.png"));
+        
+        return retValue;
+    }
     
     public cancelacionDeAutorizaciones(String nombreUsuario, String apellidoUsuario,
         String identificacion) {
