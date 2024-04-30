@@ -11,8 +11,10 @@ public class Examen {
     private String descripcion;
     private String estadoDePago;
     private String asistencia;
+    private String identificacionUsuario;
 
-    public Examen(String nombreUsuario, String apellidoUsuario, String identificacionDeExamen, String ticketDeExamen, String costo, String tipoExamen, String descripcion, String estadoDePago, String asistencia) {
+    public Examen(String nombreUsuario, String apellidoUsuario, String identificacionDeExamen, String ticketDeExamen, String costo, String tipoExamen, String descripcion, String estadoDePago, String asistencia,
+            String identificacionUsuario) {
         this.nombreUsuario = nombreUsuario;
         this.apellidoUsuario = apellidoUsuario;
         this.identificacionDeExamen = identificacionDeExamen;
@@ -22,6 +24,7 @@ public class Examen {
         this.descripcion = descripcion;
         this.estadoDePago = estadoDePago;
         this.asistencia = asistencia;
+        this.identificacionUsuario=identificacionUsuario;
     }
 
     public String getNombreUsuario() {
@@ -96,9 +99,19 @@ public class Examen {
         this.asistencia = asistencia;
     }
 
+    public String getIdentificacionUsuario() {
+        return identificacionUsuario;
+    }
+
+    public void setIdentificacionUsuario(String identificacionUsuario) {
+        this.identificacionUsuario = identificacionUsuario;
+    }
+
+    
+    
     @Override
     public String toString() {
-        return nombreUsuario + ", " + apellidoUsuario + ", " + identificacionDeExamen + ", " + ticketDeExamen + ", " + costo + ", " + tipoExamen + ", " + descripcion + ", " + estadoDePago + ", " + asistencia ;
+        return nombreUsuario + ", " + apellidoUsuario + ", " + identificacionDeExamen + ", " + ticketDeExamen + ", " + costo + ", " + tipoExamen + ", " + descripcion + ", " + estadoDePago + ", " + asistencia + ", " + identificacionUsuario;
     }
     
 }

@@ -185,13 +185,12 @@ public class SalaDeEsperaParaAtencionDeExamenes extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        lobbyboton = new javax.swing.JButton();
-        IniciarSesionboton = new javax.swing.JButton();
-        Autorizacionboton = new javax.swing.JButton();
-        PagoDeCitasboton = new javax.swing.JButton();
-        PagoDeCitasboton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        SalaDeEspera1 = new javax.swing.JButton();
+        SalaDeEspera = new javax.swing.JButton();
+        SalaDeEspera2 = new javax.swing.JButton();
+        SalaDeEspera3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -211,56 +210,47 @@ public class SalaDeEsperaParaAtencionDeExamenes extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(229, 229, 229));
 
-        lobbyboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lobbyboton.setForeground(new java.awt.Color(102, 102, 102));
-        lobbyboton.setText("Registrarse");
-        lobbyboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lobbybotonActionPerformed(evt);
-            }
-        });
-
-        IniciarSesionboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        IniciarSesionboton.setForeground(new java.awt.Color(102, 102, 102));
-        IniciarSesionboton.setText("Lobby");
-        IniciarSesionboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IniciarSesionbotonActionPerformed(evt);
-            }
-        });
-
-        Autorizacionboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Autorizacionboton.setForeground(new java.awt.Color(102, 102, 102));
-        Autorizacionboton.setText("Autorización");
-        Autorizacionboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AutorizacionbotonActionPerformed(evt);
-            }
-        });
-
-        PagoDeCitasboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PagoDeCitasboton.setForeground(new java.awt.Color(102, 102, 102));
-        PagoDeCitasboton.setText("Pago de Citas");
-        PagoDeCitasboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PagoDeCitasbotonActionPerformed(evt);
-            }
-        });
-
-        PagoDeCitasboton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PagoDeCitasboton1.setForeground(new java.awt.Color(102, 102, 102));
-        PagoDeCitasboton1.setText("Exámenes");
-        PagoDeCitasboton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PagoDeCitasboton1ActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Asistente de Citas Médicas");
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenlogo.png"))); // NOI18N
+
+        SalaDeEspera1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera1.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera1.setText("Sala de espera de pago");
+        SalaDeEspera1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera1ActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera.setText("Sala de espera de atención");
+        SalaDeEspera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEsperaActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera2.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera2.setText("Sala de autorizaciones");
+        SalaDeEspera2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera2ActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera3.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera3.setText("Sala de pago de examenes");
+        SalaDeEspera3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -269,33 +259,31 @@ public class SalaDeEsperaParaAtencionDeExamenes extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel24)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
+                .addGap(29, 29, 29)
+                .addComponent(SalaDeEspera3)
+                .addGap(37, 37, 37)
+                .addComponent(SalaDeEspera2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(PagoDeCitasboton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(PagoDeCitasboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Autorizacionboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(IniciarSesionboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lobbyboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(SalaDeEspera)
+                .addGap(47, 47, 47)
+                .addComponent(SalaDeEspera1)
+                .addGap(20, 20, 20))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel24)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lobbyboton)
-                        .addComponent(IniciarSesionboton)
-                        .addComponent(Autorizacionboton)
-                        .addComponent(PagoDeCitasboton)
-                        .addComponent(PagoDeCitasboton1))
-                    .addComponent(jLabel3)))
+                .addGap(17, 17, 17)
+                .addComponent(jLabel3))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SalaDeEspera2)
+                    .addComponent(SalaDeEspera)
+                    .addComponent(SalaDeEspera1)
+                    .addComponent(SalaDeEspera3)))
         );
 
         jPanel3.setBackground(new java.awt.Color(229, 229, 229));
@@ -470,46 +458,6 @@ public class SalaDeEsperaParaAtencionDeExamenes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lobbybotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lobbybotonActionPerformed
-        this.dispose();
-        Registro regis= new Registro();
-        regis.setVisible(true);
-        regis.setLocationRelativeTo(null);
-        regis.setResizable(false);
-    }//GEN-LAST:event_lobbybotonActionPerformed
-
-    private void IniciarSesionbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionbotonActionPerformed
-        this.dispose();
-        Principal princ=new Principal();
-        princ.setVisible(true);
-        princ.setLocationRelativeTo(null);
-        princ.setResizable(false);
-    }//GEN-LAST:event_IniciarSesionbotonActionPerformed
-
-    private void AutorizacionbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutorizacionbotonActionPerformed
-        this.dispose();
-        PrimeraEntradaAutorizacion prim = new PrimeraEntradaAutorizacion();
-        prim.setVisible(true);
-        prim.setLocationRelativeTo(null);
-        prim.setResizable(false);
-    }//GEN-LAST:event_AutorizacionbotonActionPerformed
-
-    private void PagoDeCitasbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoDeCitasbotonActionPerformed
-        this.dispose();
-        pagodeCitasPrimeraEntrada prim = new pagodeCitasPrimeraEntrada();
-        prim.setVisible(true);
-        prim.setLocationRelativeTo(null);
-        prim.setResizable(false);
-    }//GEN-LAST:event_PagoDeCitasbotonActionPerformed
-
-    private void PagoDeCitasboton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoDeCitasboton1ActionPerformed
-        this.dispose();
-        EntradadeExamenes prim = new EntradadeExamenes();
-        prim.setVisible(true);
-        prim.setLocationRelativeTo(null);
-        prim.setResizable(false);
-    }//GEN-LAST:event_PagoDeCitasboton1ActionPerformed
-
     private void mostradordeusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostradordeusuarioActionPerformed
        
     }//GEN-LAST:event_mostradordeusuarioActionPerformed
@@ -550,15 +498,51 @@ public class SalaDeEsperaParaAtencionDeExamenes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_EstadoDeSalaActionPerformed
 
+    private void SalaDeEspera1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaDeEspera1ActionPerformed
+        this.dispose();
+        SalaDeEsperaDePagoDeCitasOperador inic =
+        new SalaDeEsperaDePagoDeCitasOperador(nombreUsuario, apellidoUsaurio, identificacion);
+        inic.setVisible(true);
+        inic.setLocationRelativeTo(null);
+        inic.setResizable(false);
+    }//GEN-LAST:event_SalaDeEspera1ActionPerformed
+
+    private void SalaDeEsperaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaDeEsperaActionPerformed
+        this.dispose();
+        SalaDeEsperaDeAtencionMedicaOperador inic =
+        new SalaDeEsperaDeAtencionMedicaOperador(nombreUsuario, apellidoUsaurio, identificacion);
+        inic.setVisible(true);
+        inic.setLocationRelativeTo(null);
+        inic.setResizable(false);
+    }//GEN-LAST:event_SalaDeEsperaActionPerformed
+
+    private void SalaDeEspera2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaDeEspera2ActionPerformed
+        this.dispose();
+        SalaDeEsperaDeAutorizacionesOperador inic =
+        new SalaDeEsperaDeAutorizacionesOperador(nombreUsuario, apellidoUsaurio, identificacion);
+        inic.setVisible(true);
+        inic.setLocationRelativeTo(null);
+        inic.setResizable(false);
+    }//GEN-LAST:event_SalaDeEspera2ActionPerformed
+
+    private void SalaDeEspera3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalaDeEspera3ActionPerformed
+        this.dispose();
+        SalaDeEsperaDePagoDeExamenesOperador inic =
+        new SalaDeEsperaDePagoDeExamenesOperador(nombreUsuario, apellidoUsaurio, identificacion);
+        inic.setVisible(true);
+        inic.setLocationRelativeTo(null);
+        inic.setResizable(false);
+    }//GEN-LAST:event_SalaDeEspera3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Autorizacionboton;
     private javax.swing.JButton ContinuarFlujo;
     private javax.swing.JButton DetenerFlujo;
     private javax.swing.JTextField EstadoDeSala;
-    private javax.swing.JButton IniciarSesionboton;
-    private javax.swing.JButton PagoDeCitasboton;
-    private javax.swing.JButton PagoDeCitasboton1;
+    private javax.swing.JButton SalaDeEspera;
+    private javax.swing.JButton SalaDeEspera1;
+    private javax.swing.JButton SalaDeEspera2;
+    private javax.swing.JButton SalaDeEspera3;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -570,7 +554,6 @@ public class SalaDeEsperaParaAtencionDeExamenes extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton lobbyboton;
     private javax.swing.JTextField mostradordeusuario;
     private javax.swing.JLabel sobreNosotros1;
     private javax.swing.JTable tabla;

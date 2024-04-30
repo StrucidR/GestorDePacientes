@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FlujoDeLasSalas {
+    
     private static final String RUTA_SALA_DE_ATENCION ="src/main/java/com/asistentemedico/asistentedecitas/persistencia/estadoDeFlujoAtencionDeCitas.txt";
     private static final String RUTA_SALA_DE_PAGO_DE_CITAS="src/main/java/com/asistentemedico/asistentedecitas/persistencia/estadoDeFlujoPagoDeCitas.txt";
     private static final String RUTA_SALA_DE_AUTORIZACIONES="src/main/java/com/asistentemedico/asistentedecitas/persistencia/estadoDeFlujoDeAutorizaciones.txt";

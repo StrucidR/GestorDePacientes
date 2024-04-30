@@ -1,0 +1,2 @@
+Ejemplo, Uno Dos, 410744, SA001, 80000, Sangíneo, Un examen de sangre que evalúa diversos parámetroscomo células sanguíneas niveles de glucosa lípidos electrolitosy función de órganos como el hígado y los riñones entre otros, examenPago, Asistido
+Samuel, Arango Diaz, 402204, OR001, 100000, Orína, Un análisis de la composición y característicasde la orina que puede proporcionar información sobrela función renal, examenPago, Asistido

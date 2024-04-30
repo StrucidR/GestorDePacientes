@@ -6,13 +6,13 @@ import com.asistentemedico.asistentedecitas.igu.InicioDeSesion.Operador.salas.Sa
 import com.asistentemedico.asistentedecitas.igu.InicioDeSesion.Operador.salas.SalaDeEsperaDePagoDeCitasOperador;
 import com.asistentemedico.asistentedecitas.igu.InicioDeSesion.Operador.salas.SalaDeEsperaDePagoDeExamenesOperador;
 import com.asistentemedico.asistentedecitas.igu.InicioDeSesion.Operador.salas.SalaDeEsperaParaAtencionDeExamenes;
-import com.asistentemedico.asistentedecitas.igu.Registro.Registro;
-import com.asistentemedico.asistentedecitas.igu.Principal.Principal;
-import com.asistentemedico.asistentedecitas.igu.autorizacion.PrimeraEntradaAutorizacion;
-import com.asistentemedico.asistentedecitas.igu.examenes.EntradadeExamenes;
-import com.asistentemedico.asistentedecitas.igu.pagodecitas.pagodeCitasPrimeraEntrada;
+import com.asistentemedico.asistentedecitas.logica.MisImplementaciones.viewCitas.ListaSencilla.Sencilla;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
 
 public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
     
@@ -20,6 +20,22 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
     private String apellidoUsuario;
     private String identificacion;
     //establecemos unas variables privadas propias de esta clase
+    
+    DefaultTableModel tablaUsuarios= new DefaultTableModel();
+    
+    DefaultTableModel tablaCitas = new DefaultTableModel();
+    
+    DefaultTableModel tablaDeAutorizaciones = new DefaultTableModel();
+    
+    DefaultTableModel tablaExamenes = new DefaultTableModel();
+    
+    private Sencilla<String[]> usuarios = new Sencilla<>();
+    
+    private Sencilla<String[]> citasdeUsuarios = new Sencilla<>();
+    
+    private Sencilla <String[]> autorizacionesdeUsuarios = new Sencilla<>();
+    
+    private Sencilla<String[]> examenesDeUsuarios = new Sencilla<>();
     
     public InicioDeSesionExitosoParaElOperador(String nombreUsuario, 
     String apellidoUsuario, String identificacion) {//Y las pasamos al construc
@@ -44,26 +60,30 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        lobbyboton = new javax.swing.JButton();
-        IniciarSesionboton = new javax.swing.JButton();
-        Autorizacionboton = new javax.swing.JButton();
-        PagoDeCitasboton = new javax.swing.JButton();
-        PagoDeCitasboton1 = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        SalaDeEspera1 = new javax.swing.JButton();
+        SalaDeEspera = new javax.swing.JButton();
         SalaDeEspera2 = new javax.swing.JButton();
         SalaDeEspera3 = new javax.swing.JButton();
         SalaDeEspera4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         mostradordeusuario = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        SalaDeEspera1 = new javax.swing.JButton();
-        SalaDeEspera = new javax.swing.JButton();
+        VisualizarAutorizacionesDeUsuario = new javax.swing.JButton();
+        VisualizarExamenesDeUsuario = new javax.swing.JButton();
+        VisualizarCitasDeUsuario = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        identificadorDeUsuario = new javax.swing.JTextField();
+        Usuariosdelsistema = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(getIconImage());
@@ -72,56 +92,56 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
         jPanel2.setForeground(new java.awt.Color(204, 204, 204));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("Asistente de Citas Médicas");
 
-        lobbyboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lobbyboton.setForeground(new java.awt.Color(102, 102, 102));
-        lobbyboton.setText("Registrarse");
-        lobbyboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lobbybotonActionPerformed(evt);
-            }
-        });
-
-        IniciarSesionboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        IniciarSesionboton.setForeground(new java.awt.Color(102, 102, 102));
-        IniciarSesionboton.setText("Lobby");
-        IniciarSesionboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IniciarSesionbotonActionPerformed(evt);
-            }
-        });
-
-        Autorizacionboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Autorizacionboton.setForeground(new java.awt.Color(102, 102, 102));
-        Autorizacionboton.setText("Autorización");
-        Autorizacionboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AutorizacionbotonActionPerformed(evt);
-            }
-        });
-
-        PagoDeCitasboton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PagoDeCitasboton.setForeground(new java.awt.Color(102, 102, 102));
-        PagoDeCitasboton.setText("Pago de Citas");
-        PagoDeCitasboton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PagoDeCitasbotonActionPerformed(evt);
-            }
-        });
-
-        PagoDeCitasboton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        PagoDeCitasboton1.setForeground(new java.awt.Color(102, 102, 102));
-        PagoDeCitasboton1.setText("Exámenes");
-        PagoDeCitasboton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PagoDeCitasboton1ActionPerformed(evt);
-            }
-        });
-
         jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Imagenlogo.png"))); // NOI18N
+
+        SalaDeEspera1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera1.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera1.setText("Sala de espera de pago");
+        SalaDeEspera1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera1ActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera.setText("Sala de espera de atención");
+        SalaDeEspera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEsperaActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera2.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera2.setText("Sala de autorizaciones");
+        SalaDeEspera2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera2ActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera3.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera3.setText("Sala de pago de examenes");
+        SalaDeEspera3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera3ActionPerformed(evt);
+            }
+        });
+
+        SalaDeEspera4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        SalaDeEspera4.setForeground(new java.awt.Color(102, 102, 102));
+        SalaDeEspera4.setText("Sala de atención examenes");
+        SalaDeEspera4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalaDeEspera4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -129,32 +149,32 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(PagoDeCitasboton1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(PagoDeCitasboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SalaDeEspera3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(SalaDeEspera2)
                 .addGap(18, 18, 18)
-                .addComponent(Autorizacionboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SalaDeEspera)
                 .addGap(18, 18, 18)
-                .addComponent(IniciarSesionboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SalaDeEspera1)
                 .addGap(18, 18, 18)
-                .addComponent(lobbyboton, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addComponent(SalaDeEspera4)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lobbyboton)
-                    .addComponent(IniciarSesionboton)
-                    .addComponent(Autorizacionboton)
-                    .addComponent(PagoDeCitasboton)
-                    .addComponent(PagoDeCitasboton1)
-                    .addComponent(jLabel3)))
             .addComponent(jLabel22)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(SalaDeEspera3)
+                    .addComponent(SalaDeEspera2)
+                    .addComponent(SalaDeEspera)
+                    .addComponent(SalaDeEspera1)
+                    .addComponent(SalaDeEspera4)))
         );
 
         jPanel3.setBackground(new java.awt.Color(235, 235, 235));
@@ -187,63 +207,6 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-
-        SalaDeEspera2.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        SalaDeEspera2.setForeground(new java.awt.Color(102, 102, 102));
-        SalaDeEspera2.setText("Sala de autorizaciones");
-        SalaDeEspera2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalaDeEspera2ActionPerformed(evt);
-            }
-        });
-
-        SalaDeEspera3.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        SalaDeEspera3.setForeground(new java.awt.Color(102, 102, 102));
-        SalaDeEspera3.setText("Sala de pago de examenes");
-        SalaDeEspera3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalaDeEspera3ActionPerformed(evt);
-            }
-        });
-
-        SalaDeEspera4.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        SalaDeEspera4.setForeground(new java.awt.Color(102, 102, 102));
-        SalaDeEspera4.setText("Sala de atención examenes");
-        SalaDeEspera4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalaDeEspera4ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 34, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(SalaDeEspera4)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(SalaDeEspera3)
-                            .addContainerGap(4, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(SalaDeEspera2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(4, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(382, Short.MAX_VALUE)
-                .addComponent(SalaDeEspera2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SalaDeEspera3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SalaDeEspera4)
-                .addGap(59, 59, 59))
-        );
-
         mostradordeusuario.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         mostradordeusuario.setForeground(new java.awt.Color(0, 102, 102));
         mostradordeusuario.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -265,21 +228,53 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("cuando un paciente esta siendo atendido y gestionarse que sale para dar paso al siguiente turno ");
 
-        SalaDeEspera1.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        SalaDeEspera1.setForeground(new java.awt.Color(102, 102, 102));
-        SalaDeEspera1.setText("Sala de espera de pago");
-        SalaDeEspera1.addActionListener(new java.awt.event.ActionListener() {
+        VisualizarAutorizacionesDeUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        VisualizarAutorizacionesDeUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        VisualizarAutorizacionesDeUsuario.setText("Autorizaciones de usuario");
+        VisualizarAutorizacionesDeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalaDeEspera1ActionPerformed(evt);
+                VisualizarAutorizacionesDeUsuarioActionPerformed(evt);
             }
         });
 
-        SalaDeEspera.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        SalaDeEspera.setForeground(new java.awt.Color(102, 102, 102));
-        SalaDeEspera.setText("Sala de espera de atención");
-        SalaDeEspera.addActionListener(new java.awt.event.ActionListener() {
+        VisualizarExamenesDeUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        VisualizarExamenesDeUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        VisualizarExamenesDeUsuario.setText("Exámenes de usuario");
+        VisualizarExamenesDeUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalaDeEsperaActionPerformed(evt);
+                VisualizarExamenesDeUsuarioActionPerformed(evt);
+            }
+        });
+
+        VisualizarCitasDeUsuario.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        VisualizarCitasDeUsuario.setForeground(new java.awt.Color(102, 102, 102));
+        VisualizarCitasDeUsuario.setText("Citas de usuarios");
+        VisualizarCitasDeUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VisualizarCitasDeUsuarioActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("en que rama desea ver la historia clínica");
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel11.setText("y luego seleccione ");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setText("Escriba la identificación del usuario ");
+
+        identificadorDeUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        Usuariosdelsistema.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        Usuariosdelsistema.setForeground(new java.awt.Color(102, 102, 102));
+        Usuariosdelsistema.setText("Ver Usuarios Vinculados");
+        Usuariosdelsistema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UsuariosdelsistemaActionPerformed(evt);
             }
         });
 
@@ -292,57 +287,92 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
             }
         });
 
+        tabla.setFont(new java.awt.Font("Segoe UI Light", 1, 10)); // NOI18N
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tabla);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(918, 918, 918)
-                        .addComponent(mostradordeusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addComponent(mostradordeusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Usuariosdelsistema, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(132, 132, 132)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(VisualizarExamenesDeUsuario)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(VisualizarAutorizacionesDeUsuario)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(VisualizarCitasDeUsuario))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1097, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(204, 204, 204)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SalaDeEspera, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(SalaDeEspera1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))))
+                                    .addComponent(identificadorDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11)))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1)
-                        .addGap(7, 7, 7)
-                        .addComponent(mostradordeusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(SalaDeEspera1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SalaDeEspera)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 116, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(Usuariosdelsistema)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mostradordeusuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(identificadorDeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(VisualizarCitasDeUsuario)
+                    .addComponent(VisualizarAutorizacionesDeUsuario)
+                    .addComponent(VisualizarExamenesDeUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -350,7 +380,7 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,46 +389,6 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void lobbybotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lobbybotonActionPerformed
-        this.dispose();
-        Registro regis= new Registro();
-        regis.setVisible(true);
-        regis.setLocationRelativeTo(null);
-        regis.setResizable(false);
-    }//GEN-LAST:event_lobbybotonActionPerformed
-
-    private void IniciarSesionbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarSesionbotonActionPerformed
-        this.dispose();
-        Principal princ=new Principal();
-        princ.setVisible(true);
-        princ.setLocationRelativeTo(null);
-        princ.setResizable(false);
-    }//GEN-LAST:event_IniciarSesionbotonActionPerformed
-
-    private void AutorizacionbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutorizacionbotonActionPerformed
-        this.dispose();
-        PrimeraEntradaAutorizacion prim = new PrimeraEntradaAutorizacion();
-        prim.setVisible(true);
-        prim.setLocationRelativeTo(null);
-        prim.setResizable(false);
-    }//GEN-LAST:event_AutorizacionbotonActionPerformed
-
-    private void PagoDeCitasbotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoDeCitasbotonActionPerformed
-        this.dispose();
-        pagodeCitasPrimeraEntrada prim = new pagodeCitasPrimeraEntrada();
-        prim.setVisible(true);
-        prim.setLocationRelativeTo(null);
-        prim.setResizable(false);
-    }//GEN-LAST:event_PagoDeCitasbotonActionPerformed
-
-    private void PagoDeCitasboton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PagoDeCitasboton1ActionPerformed
-        this.dispose();
-        EntradadeExamenes prim = new EntradadeExamenes();
-        prim.setVisible(true);
-        prim.setLocationRelativeTo(null);
-        prim.setResizable(false);
-    }//GEN-LAST:event_PagoDeCitasboton1ActionPerformed
 
     private void mostradordeusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostradordeusuarioActionPerformed
        
@@ -457,19 +447,331 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
         inic.setResizable(false);
     }//GEN-LAST:event_SalaDeEspera4ActionPerformed
 
+    
+    class Nodo{
+        String dato;
+        Nodo siguiente;
+        Nodo(String dato){
+            this.dato=dato;
+            this.siguiente=null;
+        }
+    }
+    
+    private void setColumnIdentifiers(DefaultTableModel modelo, Nodo cabecera){
+        Nodo actual = cabecera;
+        while(actual != null){
+            modelo.addColumn(actual.dato);
+            actual = actual.siguiente;
+        }
+    }
+    
+    private void limpiarCitas(){
+        citasdeUsuarios.limpiar();
+    }
+    
+    public void limpiarUsuarios(){
+        usuarios.limpiar();
+    }
+    
+    public void limpiarAutorizaciones(){
+        autorizacionesdeUsuarios.limpiar();
+    }
+    
+    public void limpiarExamenes(){
+        examenesDeUsuarios.limpiar();
+    }
+    
+    //______________________________________________________________________
+    
+    private void setModeloUsuarios(){
+        
+        if(!modeloDeUsuariosActivado){
+        Nodo cabecera = new Nodo("Nombre");
+        cabecera.siguiente = new Nodo("Apellido(s)");
+        cabecera.siguiente.siguiente = new Nodo("Ident.");
+        cabecera.siguiente.siguiente.siguiente = new Nodo("Edad");
+        cabecera.siguiente.siguiente.siguiente.siguiente = new Nodo("Telefono");
+        setColumnIdentifiers(tablaUsuarios, cabecera);
+        }
+        tabla.setModel(tablaUsuarios);
+        tabla.setEnabled(false);
+    }
+    
+    private void setDatosUsuarios(){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
+        
+        usuarios.buscar(usuario -> model.addRow(usuario));
+        
+    }
+    
+    private void leerUsuariosEnSistema(){
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/usuarios.txt"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] campos = linea.split(", ");
+            String identificacionUsuario = campos[2];
+            String identificacionDeUsuario = identificadorDeUsuario.getText();
+            
+            if(identificacionUsuario.equals(identificacionDeUsuario)){
+                usuarios.agregar(campos);
+            }else if(identificacionDeUsuario.equals("")){
+                usuarios.agregar(campos);
+            }
+            
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+    
+    
+    private boolean modeloDeUsuariosActivado = false;
+    private void UsuariosdelsistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosdelsistemaActionPerformed
+        setModeloUsuarios();
+        leerUsuariosEnSistema();
+        setDatosUsuarios();
+        
+        
+        VisualizarAutorizacionesDeUsuario.setEnabled(true);
+        Usuariosdelsistema.setEnabled(false);
+        VisualizarCitasDeUsuario.setEnabled(true);
+        VisualizarExamenesDeUsuario.setEnabled(true);
+        
+        limpiarCitas();
+        limpiarAutorizaciones();
+        limpiarExamenes();
+        
+        
+        tablaCitas.setRowCount(0);
+        tablaDeAutorizaciones.setRowCount(0);
+        tablaExamenes.setRowCount(0);
+        
+        
+        modeloDeUsuariosActivado=true;
+    }//GEN-LAST:event_UsuariosdelsistemaActionPerformed
+
+    private void setModeloCitas(){
+        if(!modeloDeCitasActivado){
+        Nodo cabecera = new Nodo("Nombre");
+        cabecera.siguiente = new Nodo("Apellido(s)");
+        cabecera.siguiente.siguiente = new Nodo("Ident.");
+        cabecera.siguiente.siguiente.siguiente = new Nodo("Iden.Cita");
+        cabecera.siguiente.siguiente.siguiente.siguiente = new Nodo("Ticket");
+        cabecera.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Costo");
+        cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Doctor");
+        cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Pago?");
+        cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Especialidad");
+        cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Asistida?");
+        cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Motivo");
+        setColumnIdentifiers(tablaCitas, cabecera);
+        }
+        tabla.setModel(tablaCitas);
+        tabla.setEnabled(false);
+    }
+        
+    private void setCitasUsuario(){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
+        citasdeUsuarios.buscar(cita -> model.addRow(cita));
+        
+    }
+    
+    private void leerCitasUsuario() {
+        try (BufferedReader br = 
+        new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/citas.txt"))) {
+        String linea;
+        while ((linea = br.readLine()) != null) {
+            String[] campos = linea.split(", ");
+            String identificacionCita = campos[2];
+            String identificacionDeUsuario = identificadorDeUsuario.getText();
+            if (identificacionCita.equals(identificacionDeUsuario)) {
+                citasdeUsuarios.agregar(campos);
+            }else if(identificacionDeUsuario.equals("")){
+                citasdeUsuarios.agregar(campos);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    }
+    
+
+    private boolean modeloDeCitasActivado = false;
+    private void VisualizarCitasDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarCitasDeUsuarioActionPerformed
+        setModeloCitas();
+        leerCitasUsuario();
+        setCitasUsuario();
+        
+        VisualizarAutorizacionesDeUsuario.setEnabled(true);
+        VisualizarCitasDeUsuario.setEnabled(false);
+        Usuariosdelsistema.setEnabled(true);
+        VisualizarExamenesDeUsuario.setEnabled(true);
+        
+        limpiarUsuarios();
+        limpiarAutorizaciones();
+        limpiarExamenes();
+        
+        tablaUsuarios.setRowCount(0);
+        tablaDeAutorizaciones.setRowCount(0);
+        tablaExamenes.setRowCount(0);
+        
+        modeloDeCitasActivado=true;
+    }//GEN-LAST:event_VisualizarCitasDeUsuarioActionPerformed
+
+    private void setModeloAutorizacionesParaTabla(){
+        if(!modeloDeAutorizacionesActivado){
+            Nodo cabecera = new Nodo("Nombre");
+            cabecera.siguiente = new Nodo("Apellido(S)");
+            cabecera.siguiente.siguiente = new Nodo("IdenT");
+            cabecera.siguiente.siguiente.siguiente = new Nodo("Iden.Cta");
+            cabecera.siguiente.siguiente.siguiente.siguiente = new Nodo("Tickt");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Costo");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Examen");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Iden.Autori");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Info");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Autorizada?");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("TicktAuto");
+            setColumnIdentifiers(tablaDeAutorizaciones, cabecera);
+        }
+        tabla.setModel(tablaDeAutorizaciones);
+        tabla.setEnabled(false);
+    }
+    
+    private void leerAutorizacionesUsuario(){
+        try(BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/espera_de_autorizacion.txt"))){
+            String linea;
+            while((linea = br.readLine()) != null){
+                String [] campos = linea.split(", ");
+                String identificacionUsuario = campos[2];
+                String identificacionDelUsuario = identificadorDeUsuario.getText();
+                if(identificacionUsuario.equals(identificacionDelUsuario)){
+                    autorizacionesdeUsuarios.agregar(campos);
+                }else if(identificacionDelUsuario.equals("")){
+                    autorizacionesdeUsuarios.agregar(campos);
+                }
+
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void setAutorizacionesUsuario(){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
+        autorizacionesdeUsuarios.buscar(autorizacion -> model.addRow(autorizacion));
+    }
+    
+    
+    private boolean modeloDeAutorizacionesActivado = false;
+    private void VisualizarAutorizacionesDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarAutorizacionesDeUsuarioActionPerformed
+
+        setModeloAutorizacionesParaTabla();
+        leerAutorizacionesUsuario();
+        setAutorizacionesUsuario();
+        
+        VisualizarAutorizacionesDeUsuario.setEnabled(false);
+        VisualizarCitasDeUsuario.setEnabled(true);
+        Usuariosdelsistema.setEnabled(true);
+        VisualizarExamenesDeUsuario.setEnabled(true);
+        
+        limpiarUsuarios();
+        limpiarCitas();
+        limpiarExamenes();
+        
+        tablaUsuarios.setRowCount(0);
+        tablaCitas.setRowCount(0);
+        tablaExamenes.setRowCount(0);
+        
+        modeloDeAutorizacionesActivado=true;
+    }//GEN-LAST:event_VisualizarAutorizacionesDeUsuarioActionPerformed
+
+    private void setModeloParaExamenesTabla(){
+        if(!modeloDeTablaExamenes){
+            Nodo cabecera = new Nodo("Nombre");
+            cabecera.siguiente = new Nodo("Apellido(s)");
+            cabecera.siguiente.siguiente = new Nodo("IdentExamen.");
+            cabecera.siguiente.siguiente.siguiente = new Nodo("TicketExamen");
+            cabecera.siguiente.siguiente.siguiente.siguiente = new Nodo("Costo");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("TipoExa");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Descripcion");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Pago?");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Asistido?");
+            cabecera.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente.siguiente = new Nodo("Identifi.User");
+            setColumnIdentifiers(tablaExamenes, cabecera);
+        }
+        tabla.setModel(tablaExamenes);
+        tabla.setEnabled(false);
+    }
+    
+    private void leerExamenesUsuario(){
+        try(BufferedReader br = new BufferedReader(new FileReader("src/main/java/com/asistentemedico/asistentedecitas/persistencia/examenes.txt"))){
+            String linea;
+            while((linea = br.readLine()) != null){
+                String [] campos = linea.split(", ");
+                String identificacionUsuario = campos[9];
+                String identificacionDelUsuario = identificadorDeUsuario.getText();
+                if(identificacionUsuario.equals(identificacionDelUsuario)){
+                    examenesDeUsuarios.agregar(campos);
+                }else if(identificacionDelUsuario.equals("")){
+                    examenesDeUsuarios.agregar(campos);
+                }
+
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void setExamenesUsuario(){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        model.setRowCount(0);
+        examenesDeUsuarios.buscar(examenes -> model.addRow(examenes));
+    }
+        
+    private boolean modeloDeTablaExamenes = false;
+    private void VisualizarExamenesDeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarExamenesDeUsuarioActionPerformed
+    
+        setModeloParaExamenesTabla();
+        leerExamenesUsuario();
+        setExamenesUsuario();
+        
+        
+        VisualizarAutorizacionesDeUsuario.setEnabled(true);
+        VisualizarCitasDeUsuario.setEnabled(true);
+        Usuariosdelsistema.setEnabled(true);
+        VisualizarExamenesDeUsuario.setEnabled(false);
+        
+        limpiarUsuarios();
+        limpiarCitas();
+        limpiarAutorizaciones();
+        
+        tablaUsuarios.setRowCount(0);
+        tablaCitas.setRowCount(0);
+        tablaDeAutorizaciones.setRowCount(0);
+        
+        
+        modeloDeTablaExamenes=true;
+    }//GEN-LAST:event_VisualizarExamenesDeUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Autorizacionboton;
-    private javax.swing.JButton IniciarSesionboton;
-    private javax.swing.JButton PagoDeCitasboton;
-    private javax.swing.JButton PagoDeCitasboton1;
     private javax.swing.JButton SalaDeEspera;
     private javax.swing.JButton SalaDeEspera1;
     private javax.swing.JButton SalaDeEspera2;
     private javax.swing.JButton SalaDeEspera3;
     private javax.swing.JButton SalaDeEspera4;
+    private javax.swing.JButton Usuariosdelsistema;
+    private javax.swing.JButton VisualizarAutorizacionesDeUsuario;
+    private javax.swing.JButton VisualizarCitasDeUsuario;
+    private javax.swing.JButton VisualizarExamenesDeUsuario;
+    private javax.swing.JTextField identificadorDeUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -479,8 +781,8 @@ public class InicioDeSesionExitosoParaElOperador extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton lobbyboton;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField mostradordeusuario;
+    public javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }

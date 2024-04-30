@@ -150,6 +150,7 @@ com\asistentemedico\asistentedecitas\igu\examenes\CancelacionDeExamenesPagos$4.c
 com\asistentemedico\asistentedecitas\igu\pagodecitas\CitaNoPagada$6.class
 com\asistentemedico\asistentedecitas\igu\examenes\AgendamientoExamenes$3.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Agendamientodecita\confirmacionDelAgendamientoDeLaCita$5.class
+com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Operador\InicioDeSesionExitosoParaElOperador$Nodo.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\InicioDeSesionExitoso$13.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Operador\salas\SalaDeEsperaDeAutorizacionesOperador$6.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Agendamientodecita\ErrorAlAgendarOPasarALaSalaDeEspera$10.class
@@ -688,7 +689,6 @@ com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Operador\salas\SalaDeEsp
 com\asistentemedico\asistentedecitas\logica\MisImplementaciones\viewCitas\ListaSencilla\Sencilla$Nodo.class
 com\asistentemedico\asistentedecitas\igu\autorizacion\FiltroDeAutorizacion$17.class
 com\asistentemedico\asistentedecitas\igu\examenes\AgendamientoExamenes$14.class
-com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Operador\InicioDeSesionExitosoParaElOperador$12.class
 com\asistentemedico\asistentedecitas\igu\pagodecitas\CitaPagada$8.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Operador\salas\SalaDeEsperaDePagoDeCitasOperador$2.class
 com\asistentemedico\asistentedecitas\igu\InicioDeSesion\Saladeespera\CitaAtendidaConExito.class

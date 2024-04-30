@@ -123,7 +123,8 @@ public class GestorExamenes {
                     examenespera.getTipoExamen() + ", " +
                     examenespera.getDescripcion() + ", " +
                     examenespera.getEstadoDePago() + ", " +
-                    examenespera.getAsistencia());
+                    examenespera.getAsistencia() + ", " +
+                    examenespera.getIdentificacionUsuario());
                     bw.newLine();
                     nodoActual = nodoActual.getSiguiente();
                 }
@@ -146,10 +147,11 @@ public class GestorExamenes {
                     String descripcion =obtenerCampo(linea, 6);
                     String estadoDePago =obtenerCampo(linea, 7);
                     String asistencia = obtenerCampo(linea, 8);
+                    String identificacionUsuario = obtenerCampo(linea, 9);
                             
                     Examen examenes = new Examen(nombre, apellido,
                     identificadorDeExamen, ticketDeExamen, Costo, 
-                    tipoExamen, descripcion, estadoDePago, asistencia);
+                    tipoExamen, descripcion, estadoDePago, asistencia, identificacionUsuario);
                     examenesenespera.agregarAlFinal(examenes);
                 }
             }catch(IOException e){
@@ -318,13 +320,13 @@ public class GestorExamenes {
 
         public static void guardarAutorizacion(String nombre, String apellido, 
         String identificadordeAutorizacion, String ticketDeAutorizacion,
-        String precio, String tipodeexamen, String descripcion){
+        String precio, String tipodeexamen, String descripcion, String identificacion){
             String rutaArchivo=RUTA_ARCHIVO_EXAMENES;
             try{
                 FileWriter escritor = new FileWriter(rutaArchivo, true);
                 escritor.write(nombre + ", " + apellido + ", " + identificadordeAutorizacion +
                 ", " + ticketDeAutorizacion + ", " + precio + ", " + tipodeexamen + 
-                ", " + descripcion + ", " + "examenNoPago" + ", " + "NoAsistido" +
+                ", " + descripcion + ", " + "examenNoPago" + ", " + "NoAsistido" + ", " + identificacion +
                 "\n");
                 escritor.close();
             }catch(IOException e){

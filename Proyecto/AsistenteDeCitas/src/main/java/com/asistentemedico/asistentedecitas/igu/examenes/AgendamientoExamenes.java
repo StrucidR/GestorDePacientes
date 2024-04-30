@@ -13,13 +13,14 @@ public class AgendamientoExamenes extends javax.swing.JFrame {
     
     private String nombreUsuario;
     private String apellidoUsuario;
+    private String identificacionUsuario;
     private String identificacionDeExamen;
     private String ticketDeExmen;
     private String descripcion;
     private String costo;
     private String tipoExamen;
     
-    public AgendamientoExamenes(String nombreUsuario, String apellidoUsuario, 
+    public AgendamientoExamenes(String nombreUsuario, String apellidoUsuario,String identificacionUsuario,
             String identificacionDeExamen, String ticketDeExamen, String descripcion,
             String costo, String tipoExamen) {
         
@@ -27,6 +28,7 @@ public class AgendamientoExamenes extends javax.swing.JFrame {
         
         this.nombreUsuario=nombreUsuario;
         this.apellidoUsuario=apellidoUsuario;
+        this.identificacionUsuario=identificacionUsuario;
         this.identificacionDeExamen=identificacionDeExamen;
         this.ticketDeExmen=ticketDeExamen;
         this.descripcion=descripcion;
@@ -514,7 +516,7 @@ public class AgendamientoExamenes extends javax.swing.JFrame {
         this.dispose();
         GestorExamenes.guardarAutorizacion
         (nombreUsuario, apellidoUsuario, identificacionDeExamen,ticketDeExmen,costo,
-                tipoExamen,descripcion);
+                tipoExamen,descripcion, identificacionUsuario);
         PagoycredencialesCorrectasAgendamiento siguiente= new PagoycredencialesCorrectasAgendamiento(
         nombreUsuario, apellidoUsuario, identificacionDeExamen,ticketDeExmen,
         descripcion,costo,tipoExamen);

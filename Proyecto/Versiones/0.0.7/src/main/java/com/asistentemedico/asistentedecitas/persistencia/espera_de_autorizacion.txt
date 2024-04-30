@@ -1,0 +1,2 @@
+Ejemplo, Uno Dos, 123456789, 34078, GV001, 80000, Sangíneo, 410744, Un examen de sangre que evalúa diversos parámetroscomo células sanguíneas niveles de glucosa lípidos electrolitosy función de órganos como el hígado y los riñones entre otros, AutorizacionExitosa, SA001
+Samuel, Arango Diaz, 1116774764, 47514, CC002, 100000, Orína, 402204, Un análisis de la composición y característicasde la orina que puede proporcionar información sobrela función renal, AutorizacionExitosa, OR001

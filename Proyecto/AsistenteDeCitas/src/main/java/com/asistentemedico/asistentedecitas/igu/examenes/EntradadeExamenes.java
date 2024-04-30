@@ -499,7 +499,7 @@ public class EntradadeExamenes extends javax.swing.JFrame {
 
             String nombreUsuario = nombreEntrada.getText();
             String apellidoUsuario=apellidoEntrada.getText();
-            String identificacion = identifiacionEntrada.getText();
+            String identificacionUsuario = identifiacionEntrada.getText();
             String contrasenia = new String(contraseniaEntrada.getPassword());
 
             String identificadorDeAutorizacion =
@@ -511,7 +511,7 @@ public class EntradadeExamenes extends javax.swing.JFrame {
             ControladorUsuario.cargarUsuarios();
             if(ControladorUsuario.validarInicioSesion
                 (nombreUsuario, apellidoUsuario,
-                    identificacion, contrasenia) == true){
+                    identificacionUsuario, contrasenia) == true){
 
                 boolean autorizada = GestorExamenes.verificarAutorizacion(identificadorDeAutorizacion,
                     ticketAutorizacion);
@@ -525,11 +525,11 @@ public class EntradadeExamenes extends javax.swing.JFrame {
 
                 String tipoExamen =
                 GestorExamenes.traerTipoExamen(nombreUsuario, apellidoUsuario,
-                    identificacion, identificadorDeAutorizacion, ticketAutorizacion);
+                    identificacionUsuario, identificadorDeAutorizacion, ticketAutorizacion);
 
                 String traerDescripcion =
                 GestorExamenes.traerDescripcion(nombreUsuario,
-                    apellidoUsuario, identificacion,
+                    apellidoUsuario, identificacionUsuario,
                     identificadorDeAutorizacion, ticketAutorizacion);
 
                 if(autorizada){
@@ -537,7 +537,7 @@ public class EntradadeExamenes extends javax.swing.JFrame {
                     if(examenAgendado==false){
 
                         AgendamientoExamenes agend = new AgendamientoExamenes(
-                            nombreUsuario, apellidoUsuario,
+                            nombreUsuario, apellidoUsuario, identificacionUsuario,
                             identificadorDeAutorizacion, ticketAutorizacion,  traerDescripcion,
                             costo, tipoExamen);
                         this.dispose();
